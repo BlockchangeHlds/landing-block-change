@@ -102,27 +102,6 @@ const dashboardMetrics = [
             class="bg-white shadow-xl overflow-hidden"
           >
             <!-- Header del Dashboard -->
-            <template #header>
-              <div class="flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                  <div
-                    class="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold"
-                    :style="{ backgroundColor: '#00204B' }"
-                  >
-                    <span style="color: #1DA977;">*</span>
-                  </div>
-                  <div>
-                    <h3 class="font-semibold text-gray-900">Dashboard</h3>
-                    <p class="text-sm text-gray-500">Financial Overview</p>
-                  </div>
-                </div>
-                <UButton
-                  variant="ghost"
-                  size="sm"
-                  icon="i-heroicons-ellipsis-horizontal"
-                />
-              </div>
-            </template>
 
             <!-- Contenido del Dashboard -->
             <div class="space-y-6">
