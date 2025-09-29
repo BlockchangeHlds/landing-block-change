@@ -26,43 +26,51 @@ nuxtApp.hooks.hookOnce('page:finish', () => {
 </script>
 
 <template>
-  <UHeader>
-    <template #left>
-      <NuxtLink to="/">
-        <AppLogo class="w-auto h-6 shrink-0" />
-      </NuxtLink>
-
-      <TemplateMenu />
+  <UHeader class="bg-white border-b border-gray-200">
+    <template #title>
+      <div class="flex items-center gap-2">
+        <div
+          class="text-2xl font-bold"
+          :style="{ color: '#00204B' }"
+        >
+          <span style="color: #1DA977;">*</span> BlockChange
+        </div>
+      </div>
     </template>
 
+    <UNavigationMenu
+      :items="navigationItems"
+      class="hidden lg:flex"
+    />
+
     <template #right>
-      <UNavigationMenu
-        :items="items"
-        variant="link"
-        class="hidden lg:block"
-      />
-
       <UButton
-        label="Download App"
-        variant="subtle"
-        class="hidden lg:block"
+        label="Empieza aquí"
+        color="primary"
+        variant="solid"
+        size="md"
+        :style="{ backgroundColor: '#1DA977' }"
+        class="hover:opacity-90 text-white"
       />
-
-      <UColorModeButton />
     </template>
 
     <template #body>
       <UNavigationMenu
-        :items="items"
+        :items="navigationItems"
         orientation="vertical"
         class="-mx-2.5"
       />
-      <UButton
-        class="mt-4"
-        label="Download App"
-        variant="subtle"
-        block
-      />
+      <div class="mt-4 px-2.5">
+        <UButton
+          label="Empieza aquí"
+          color="primary"
+          variant="solid"
+          size="md"
+          block
+          :style="{ backgroundColor: '#1DA977' }"
+          class="hover:opacity-90 text-white"
+        />
+      </div>
     </template>
   </UHeader>
 </template>

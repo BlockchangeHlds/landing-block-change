@@ -56,7 +56,7 @@ function onSubmit() {
   />
 
   <UFooter :ui="{ top: 'border-b border-default' }">
-    <template #top>
+    <!-- <template #top>
       <UContainer>
         <UFooterColumns :columns="columns">
           <template #right>
@@ -85,11 +85,11 @@ function onSubmit() {
           </template>
         </UFooterColumns>
       </UContainer>
-    </template>
+    </template> -->
 
     <template #left>
       <p class="text-sm text-muted">
-        Built with Nuxt UI • © {{ new Date().getFullYear() }}
+        Block Change • © {{ new Date().getFullYear() }}
       </p>
     </template>
 
