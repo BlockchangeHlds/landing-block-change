@@ -171,34 +171,34 @@ const maxValue = 40000
           </div>
 
           <!-- Gráfico de barras -->
-          <div class="relative h-80 mb-6 flex-1">
+          <div class="relative h-64 sm:h-80 mb-6">
             <!-- Líneas de referencia -->
-            <div class="absolute inset-0 flex flex-col justify-between text-sm text-gray-700 font-medium">
+            <div class="absolute inset-0 flex flex-col justify-between text-xs sm:text-sm text-gray-700 font-medium">
               <div class="flex items-center">
-                <span class="w-16">$40,000</span>
+                <span class="w-12 sm:w-16">$40,000</span>
                 <div class="flex-1 h-px bg-gray-400" />
               </div>
               <div class="flex items-center">
-                <span class="w-16">$30,000</span>
+                <span class="w-12 sm:w-16">$30,000</span>
                 <div class="flex-1 h-px bg-gray-400" />
               </div>
               <div class="flex items-center">
-                <span class="w-16">$20,000</span>
+                <span class="w-12 sm:w-16">$20,000</span>
                 <div class="flex-1 h-px bg-gray-400" />
               </div>
               <div class="flex items-center">
-                <span class="w-16">$10,000</span>
+                <span class="w-12 sm:w-16">$10,000</span>
                 <div class="flex-1 h-px bg-gray-400" />
               </div>
               <div class="flex items-center">
-                <span class="w-16">$0</span>
+                <span class="w-12 sm:w-16">$0</span>
                 <div class="flex-1 h-px bg-gray-400" />
               </div>
             </div>
 
             <!-- Barras y línea de tendencia -->
-            <div class="absolute inset-0 pl-16 pr-4 pt-2 pb-8">
-              <div class="relative h-full flex items-end justify-between gap-4">
+            <div class="absolute inset-0 pl-12 sm:pl-16 pr-2 sm:pr-4 pt-2 pb-6 sm:pb-8">
+              <div class="relative h-full flex items-end justify-between gap-2 sm:gap-4">
                 <!-- Barras por trimestre -->
                 <div
                   v-for="data in chartData"
@@ -214,7 +214,7 @@ const maxValue = 40000
                     }"
                   />
                   <!-- Etiqueta del trimestre -->
-                  <span class="text-sm font-medium text-gray-700 mt-2">
+                  <span class="text-xs sm:text-sm font-medium text-gray-700 mt-2">
                     {{ data.quarter }}
                   </span>
                 </div>
@@ -238,7 +238,7 @@ const maxValue = 40000
           </div>
 
           <!-- Leyenda -->
-          <div class="flex items-center justify-center gap-8 text-sm mt-auto">
+          <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-8 text-xs sm:text-sm mt-auto">
             <div class="flex items-center gap-2">
               <div
                 class="w-4 h-4 rounded-sm"

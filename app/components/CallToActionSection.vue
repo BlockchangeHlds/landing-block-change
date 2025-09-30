@@ -137,7 +137,7 @@ function onSubmitConsultation() {
               </div>
 
               <!-- Área de texto -->
-<!--              <UFormField
+              <UFormField
                 label="Anything else you would like us to know?"
                 name="message"
               >
@@ -147,7 +147,7 @@ function onSubmitConsultation() {
                   :rows="5"
                   class="w-full"
                 />
-              </UFormField>-->
+              </UFormField>
 
               <!-- Checkbox de privacidad -->
               <div class="flex items-start gap-3">

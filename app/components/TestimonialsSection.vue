@@ -41,7 +41,10 @@ const testimonials = [
 
 <template>
   <!-- Testimonials Section -->
-  <div class="py-16 sm:py-24 bg-gray-50">
+  <div
+    id="testimonials"
+    class="py-16 sm:py-24 bg-gray-50"
+  >
     <UContainer>
       <!-- Título de la sección -->
       <div class="text-center mb-16">

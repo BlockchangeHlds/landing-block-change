@@ -69,13 +69,15 @@ const dashboardMetrics = [
               :style="{ backgroundColor: '#1DA977' }"
               class="hover:opacity-90 text-white px-8 py-3"
             />
-            <UButton
-              label="¿Quiénes somos?"
-              color="neutral"
-              variant="outline"
-              size="lg"
-              class="border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-3"
-            />
+            <a href="#testimonials">
+              <UButton
+                label="¿Quiénes somos?"
+                color="neutral"
+                variant="outline"
+                size="lg"
+                class="border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-3"
+              />
+            </a>
           </div>
 
           <!-- Características destacadas -->
