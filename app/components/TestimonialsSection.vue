@@ -6,35 +6,35 @@ const testimonials = [
     quote: 'This app transformed how I manage my money. Highly recommended.',
     name: 'Frederic Hill',
     position: 'Founder & CEO',
-    avatar: '/api/placeholder/64/64'
+    avatar: 'https://ui-avatars.com/api/?name=Frederic+Hill&size=64&background=1DA977&color=fff'
   },
   {
     id: 2,
     quote: 'The budgeting features helped me understand my spending habits better. Thank you!',
     name: 'Julie Kyle',
     position: 'Account Executive',
-    avatar: '/api/placeholder/64/64'
+    avatar: 'https://ui-avatars.com/api/?name=Julie+Kyle&size=64&background=1DA977&color=fff'
   },
   {
     id: 3,
     quote: 'I\'ve seen a noticeable improvement in my savings since using this app. It suits my unique financial needs.',
     name: 'Brendan Buck',
     position: 'Data Engineer',
-    avatar: '/api/placeholder/64/64'
+    avatar: 'https://ui-avatars.com/api/?name=Brendan+Buck&size=64&background=1DA977&color=fff'
   },
   {
     id: 4,
     quote: 'Easy-to-use and effective. It\'s like having a financial advisor in my pocket. Great value for money.',
     name: 'Paige Lowery',
     position: 'Head of Brand',
-    avatar: '/api/placeholder/64/64'
+    avatar: 'https://ui-avatars.com/api/?name=Paige+Lowery&size=64&background=1DA977&color=fff'
   },
   {
     id: 5,
     quote: 'The app\'s reminders keep me on track with bills. I love the custom options. Super helpful!',
     name: 'Stefan Ball',
     position: 'Marketing Manager',
-    avatar: '/api/placeholder/64/64'
+    avatar: 'https://ui-avatars.com/api/?name=Stefan+Ball&size=64&background=1DA977&color=fff'
   }
 ]
 </script>

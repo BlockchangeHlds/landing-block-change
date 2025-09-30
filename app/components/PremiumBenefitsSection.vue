@@ -111,7 +111,7 @@ const maxValue = 40000
                 Plazo:
               </label>
               <div class="px-4">
-                <URange
+                <USlider
                   v-model="calculatorForm.term"
                   :min="1"
                   :max="36"

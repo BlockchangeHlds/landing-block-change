@@ -25,7 +25,8 @@ export default defineNuxtConfig({
     prerender: {
       routes: [
         '/'
-      ]
+      ],
+      failOnError: false
     }
   },
 
@@ -36,5 +37,9 @@ export default defineNuxtConfig({
         braceStyle: '1tbs'
       }
     }
+  },
+
+  image: {
+    domains: ['ui-avatars.com']
   }
 })
