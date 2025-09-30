@@ -50,10 +50,10 @@ function onSubmit() {
 </script>
 
 <template>
-  <USeparator
+  <!--  <USeparator
     icon="i-simple-icons-nuxtdotjs"
     class="h-px"
-  />
+  /> -->
 
   <UFooter :ui="{ top: 'border-b border-default' }">
     <!-- <template #top>

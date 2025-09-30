@@ -31,21 +31,13 @@ function onSubmitConsultation() {
 <template>
   <!-- Call to Action Section -->
   <div
-    class="py-16 sm:py-24 rounded-3xl mx-4 sm:mx-8 my-8"
+    class="py-16 sm:py-24 rounded-3xl mx-4 sm:mx-8"
     :style="{ backgroundColor: '#00204B' }"
   >
     <UContainer>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
         <!-- Contenido del CTA -->
         <div class="text-white">
-          <!-- Badge -->
-          <UBadge
-            label="Get started"
-            variant="soft"
-            size="sm"
-            class="mb-6 bg-white/10 text-white border-white/20"
-          />
-
           <!-- Título -->
           <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
             Join thousands in achieving financial freedom
@@ -57,12 +49,6 @@ function onSubmitConsultation() {
           </p>
 
           <!-- Botón CTA -->
-          <UButton
-            label="Start free trial"
-            variant="solid"
-            size="lg"
-            class="bg-white text-gray-900 hover:bg-gray-100 px-8 py-3 mb-8"
-          />
 
           <!-- Características del CTA -->
           <div class="flex flex-col sm:flex-row gap-6">
@@ -89,7 +75,7 @@ function onSubmitConsultation() {
           >
             <template #header>
               <h3 class="text-xl font-semibold text-gray-900">
-                Book free consultation
+                ¿Quieres saber más de nosotros?
               </h3>
             </template>
 
@@ -102,23 +88,23 @@ function onSubmitConsultation() {
               <!-- Primera fila: Nombre y Empresa -->
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <UFormField
-                  label="Your name *"
+                  label="Nombres *"
                   name="name"
                 >
                   <UInput
                     v-model="consultationForm.name"
-                    placeholder="Enter your name"
+                    placeholder="Ingresa tu nombre"
                     required
                   />
                 </UFormField>
 
                 <UFormField
-                  label="Company name"
+                  label="Apellidos"
                   name="company"
                 >
                   <UInput
                     v-model="consultationForm.company"
-                    placeholder="Enter company name"
+                    placeholder="Ingresa tus apellidos"
                   />
                 </UFormField>
               </div>
@@ -126,24 +112,24 @@ function onSubmitConsultation() {
               <!-- Segunda fila: Teléfono y Email -->
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <UFormField
-                  label="Phone number *"
+                  label="Teléfono *"
                   name="phone"
                 >
                   <UInput
                     v-model="consultationForm.phone"
-                    placeholder="Enter phone number"
+                    placeholder="Ingresa tu teléfono"
                     type="tel"
                     required
                   />
                 </UFormField>
 
                 <UFormField
-                  label="Email address *"
+                  label="Correo electrónico *"
                   name="email"
                 >
                   <UInput
                     v-model="consultationForm.email"
-                    placeholder="Enter email address"
+                    placeholder="Ingresa tu correo"
                     type="email"
                     required
                   />
@@ -151,16 +137,17 @@ function onSubmitConsultation() {
               </div>
 
               <!-- Área de texto -->
-              <UFormField
+<!--              <UFormField
                 label="Anything else you would like us to know?"
                 name="message"
               >
                 <UTextarea
                   v-model="consultationForm.message"
                   placeholder="Tell us more about your needs..."
-                  :rows="4"
+                  :rows="5"
+                  class="w-full"
                 />
-              </UFormField>
+              </UFormField>-->
 
               <!-- Checkbox de privacidad -->
               <div class="flex items-start gap-3">
@@ -169,14 +156,15 @@ function onSubmitConsultation() {
                   required
                 />
                 <label class="text-sm text-gray-600 leading-relaxed">
-                  I understand and agree to the privacy policy.
+                  <b>Acepto los términos y condiciones. </b>
+                  Solo usaremos tus datos para contactarte
                 </label>
               </div>
 
               <!-- Botón de envío -->
               <UButton
                 type="submit"
-                label="Submit request"
+                label="Quiero más información"
                 variant="solid"
                 size="lg"
                 block

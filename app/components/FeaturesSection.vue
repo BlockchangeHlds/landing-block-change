@@ -4,38 +4,26 @@ const productFeatures = [
   {
     id: 1,
     icon: 'i-heroicons-credit-card',
-    title: 'Bank account integration',
-    description: 'Track balances, transactions, and categorize expenditures effortlessly.'
+    title: 'Alto Rendimiento',
+    description: 'Podrías generar más 20% anual en dólares*'
   },
   {
     id: 2,
     icon: 'i-heroicons-chart-pie',
-    title: 'Investment insights',
-    description: 'Receive recommendations and educational resources based on your financial goals.'
+    title: 'Liquidez',
+    description: 'Retira tu capital después de 6 meses sin penalidad y recibe tus ganancias mensualmente.'
   },
   {
     id: 3,
     icon: 'i-heroicons-funnel',
-    title: 'Goal tracking',
-    description: 'Receive notifications as you reach milestones, adjust goals as circumstances change.'
+    title: 'Riesgo estructurado y mitigado',
+    description: 'El 30% se invierte en criptodivisas, ETFs y commodities tokenizados, otro 30% en activos virtuales a más de 6 meses, y el 40% restante en stablecoins y USD en protocolos de rentabilidad fija.'
   },
   {
     id: 4,
     icon: 'i-heroicons-document-chart-bar',
-    title: 'Customizable reports',
+    title: 'Transparencia',
     description: 'Tailor reports based on preferred time frames, and specific financial areas of interest.'
-  },
-  {
-    id: 5,
-    icon: 'i-heroicons-arrow-path',
-    title: 'Sync across devices',
-    description: 'Manage your finances easily without worrying about data discrepancies or manual syncing.'
-  },
-  {
-    id: 6,
-    icon: 'i-heroicons-chat-bubble-left-ellipsis',
-    title: 'Management help',
-    description: 'Take advantage of educational content, tutorials, and expert advice.'
   }
 ]
 </script>
@@ -46,19 +34,18 @@ const productFeatures = [
     <UContainer>
       <!-- Badge y título -->
       <div class="text-center mb-16">
-        <UBadge
-          label="Simple budgeting"
-          variant="soft"
-          size="md"
-          class="mb-6 bg-gray-100 text-gray-700 border-gray-200"
-        />
-
         <h2
           class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-4xl mx-auto"
           :style="{ color: '#00204B' }"
         >
-          Enjoy peace of mind while effortlessly growing your funds
+          Haz parte del mercado más rentable
+          de esta generación
         </h2>
+
+        <p class="pt-2">
+          Invierte en activos virtuales y genera hasta 20%
+          de rentabilidad en soles y dólares.
+        </p>
       </div>
 
       <!-- Grid de características -->

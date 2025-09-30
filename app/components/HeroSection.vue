@@ -42,7 +42,7 @@ const dashboardMetrics = [
 
 <template>
   <!-- Hero Section -->
-  <div class="relative bg-gray-50 py-16 sm:py-24">
+  <div class="relative bg-teal-50 py-16 sm:py-24">
     <UContainer>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <!-- Contenido del Hero -->

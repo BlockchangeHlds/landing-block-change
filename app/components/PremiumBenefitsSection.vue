@@ -38,12 +38,14 @@ const maxValue = 40000
   <!-- Premium Benefits Section -->
   <div
     class="py-16 sm:py-24 rounded-3xl mx-4 sm:mx-8 my-8"
-    :style="{ backgroundColor: '#00204B' }"
+    :style="{
+      background: 'linear-gradient(135deg, #00204B 0%, #151342 100%)'
+    }"
   >
     <UContainer>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
         <!-- Calculadora de Ganancias -->
-        <div class="bg-gray-200 p-8 rounded-2xl h-full flex flex-col">
+        <div class="bg-white p-8 rounded-2xl h-full flex flex-col shadow-lg">
           <!-- Título principal -->
           <h2 class="text-3xl font-bold text-gray-900 mb-2">
             ¡Calcula tus ganancias!
@@ -135,7 +137,10 @@ const maxValue = 40000
                 label="Calcular"
                 variant="solid"
                 size="lg"
-                class="w-full bg-gray-600 hover:bg-gray-700 text-white py-3"
+                class="w-full text-white py-3"
+                :style="{
+                  'background-color': '#1DA977'
+                }"
                 @click="calculateEarnings"
               />
             </div>
@@ -148,18 +153,19 @@ const maxValue = 40000
         </div>
 
         <!-- Gráfico de Inversiones -->
-        <div class="bg-gray-200 p-8 rounded-2xl h-full flex flex-col">
+        <div class="bg-white p-8 rounded-2xl h-full flex flex-col shadow-lg">
           <!-- Header del gráfico -->
-          <div class="bg-gray-600 text-white p-4 rounded-lg mb-6">
-            <h3 class="text-lg font-semibold mb-2">
+          <div class="mb-6">
+            <h3 class="text-lg font-semibold mb-2 text-gray-900">
               En los últimos 12 meses pudiste haber alcanzado
             </h3>
             <div class="flex items-center gap-4">
-              <span class="text-3xl font-bold">$36,000.00</span>
+              <span class="text-3xl font-bold text-gray-900">$36,000.00</span>
               <UBadge
                 label="+ 20%"
                 variant="solid"
-                class="bg-white text-black px-3 py-1 text-sm font-semibold"
+                class="px-3 py-1 text-sm font-semibold text-white"
+                :style="{ 'background-color': '#1DA977' }"
               />
             </div>
           </div>
@@ -199,10 +205,13 @@ const maxValue = 40000
                   :key="data.quarter"
                   class="flex-1 flex flex-col items-center relative"
                 >
-                  <!-- Barra de inversión (gris) -->
+                  <!-- Barra de inversión (verde) -->
                   <div
-                    class="w-full bg-gray-600 rounded-sm relative"
-                    :style="{ height: `${(data.investment / maxValue) * 100}%` }"
+                    class="w-full rounded-sm relative"
+                    :style="{
+                      'height': `${(data.investment / maxValue) * 100}%`,
+                      'background-color': '#1DA977'
+                    }"
                   />
                   <!-- Etiqueta del trimestre -->
                   <span class="text-sm font-medium text-gray-700 mt-2">
@@ -219,8 +228,8 @@ const maxValue = 40000
                   <polyline
                     points="12.5,85 37.5,65 62.5,25 87.5,15"
                     fill="none"
-                    :stroke="'#00204B'"
-                    stroke-width="2"
+                    :stroke="'#1DA977'"
+                    stroke-width="3"
                     class="opacity-90"
                   />
                 </svg>
@@ -231,7 +240,10 @@ const maxValue = 40000
           <!-- Leyenda -->
           <div class="flex items-center justify-center gap-8 text-sm mt-auto">
             <div class="flex items-center gap-2">
-              <div class="w-4 h-4 bg-gray-600 rounded-sm" />
+              <div
+                class="w-4 h-4 rounded-sm"
+                :style="{ 'background-color': '#1DA977' }"
+              />
               <span class="font-medium text-gray-700">Inversión</span>
             </div>
             <div class="flex items-center gap-2">
@@ -243,7 +255,7 @@ const maxValue = 40000
             <div class="flex items-center gap-2">
               <div
                 class="w-4 h-4 rounded-sm"
-                :style="{ backgroundColor: '#00204B' }"
+                :style="{ 'background-color': '#00204B' }"
               />
               <span class="font-medium text-gray-700">Depósito bancario</span>
             </div>
