@@ -108,7 +108,7 @@ const dashboardMetrics = [
             <!-- Contenido del Dashboard -->
             <div class="space-y-6">
               <!-- Métricas principales -->
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-4">
                 <div
                   v-for="metric in dashboardMetrics"
                   :key="metric.title"
