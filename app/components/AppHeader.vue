@@ -18,14 +18,16 @@
     </template>
 
     <template #right>
-      <UButton
-        label="Empieza aquí"
-        color="primary"
-        variant="solid"
-        size="md"
-        :style="{ backgroundColor: '#1DA977' }"
-        class="hover:opacity-90 text-white"
-      />
+      <a href="#testimonials">
+        <UButton
+          label="¿Quiénes somos?"
+          color="primary"
+          variant="solid"
+          size="md"
+          :style="{ backgroundColor: '#1DA977' }"
+          class="hover:opacity-90 text-white"
+        />
+      </a>
     </template>
   </UHeader>
 </template>

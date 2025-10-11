@@ -48,22 +48,22 @@ const maxValue = 40000
         <div class="bg-white p-8 rounded-2xl h-full flex flex-col shadow-lg">
           <!-- Título principal -->
           <h2 class="text-3xl font-bold text-gray-900 mb-2">
-            ¡Calcula tus ganancias!
+            ¡Potenciales ganancias!
           </h2>
 
           <!-- Subtítulo -->
           <p class="text-gray-700 mb-8">
-            Que tus activos virtuales trabajen por ti
+            Que tus activos digitales trabajen por ti
           </p>
 
           <!-- Formulario de la calculadora -->
           <div class="space-y-6 flex-1 flex flex-col">
             <!-- Vas a invertir en -->
-            <div>
+            <!-- <div>
               <h3 class="text-lg font-semibold text-gray-900 mb-4">
                 Vas a invertir en:
               </h3>
-            </div>
+            </div> -->
 
             <!-- Monto inicial -->
             <div class="space-y-2">

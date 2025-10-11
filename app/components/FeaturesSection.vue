@@ -38,7 +38,7 @@ const productFeatures = [
           class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-4xl mx-auto"
           :style="{ color: '#00204B' }"
         >
-          Haz parte del mercado más rentable
+          Forma parte del mercado más rentable
           de esta generación
         </h2>
 

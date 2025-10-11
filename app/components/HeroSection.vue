@@ -18,14 +18,14 @@ const heroFeatures = [
 // Métricas del dashboard
 const dashboardMetrics = [
   {
-    title: 'En Activos bajo nuestra\n' +
+    title: 'Activos bajo nuestra\n' +
       'gestión desde el 2023',
     value: '$1,6M',
     change: '10% from last week',
     trend: 'up'
   },
   {
-    title: 'De costo \n' +
+    title: 'Costo \n' +
       'de mantenimiento Anual',
     value: '0.083%',
     change: '12% from last week',
@@ -57,7 +57,7 @@ const dashboardMetrics = [
 
           <!-- Descripción -->
           <p class="text-lg text-gray-600 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-            Hacemos crecer tu capital con estrategias en activos digitales, de forma segura.
+            Diversificamos tus inversiones en activos digitales con análisis, estrategia y control
           </p>
 
           <!-- Botones CTA -->
@@ -67,9 +67,9 @@ const dashboardMetrics = [
               variant="solid"
               size="lg"
               :style="{ backgroundColor: '#1DA977' }"
-              class="hover:opacity-90 text-white px-8 py-3"
+              class="hover:opacity-90 text-white px-8 py-3 justify-center"
             />
-            <a href="#testimonials">
+            <!-- <a href="#testimonials">
               <UButton
                 label="¿Quiénes somos?"
                 color="neutral"
@@ -77,7 +77,7 @@ const dashboardMetrics = [
                 size="lg"
                 class="border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-3"
               />
-            </a>
+            </a> -->
           </div>
 
           <!-- Características destacadas -->
