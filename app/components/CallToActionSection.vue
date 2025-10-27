@@ -40,12 +40,12 @@ function onSubmitConsultation() {
         <div class="text-white">
           <!-- Título -->
           <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-            Join thousands in achieving financial freedom
+            ¿Quieres saber más de nosotros?
           </h2>
 
           <!-- Descripción -->
           <p class="text-lg text-white/80 mb-8 leading-relaxed">
-            Experience the full potential of our app for enhanced financial control.
+            Dejanos tus datos y nosotros te contactamos
           </p>
 
           <!-- Botón CTA -->
@@ -75,7 +75,7 @@ function onSubmitConsultation() {
           >
             <template #header>
               <h3 class="text-xl font-semibold text-gray-900">
-                ¿Quieres saber más de nosotros?
+                Dejanos tus datos y nosotros te contactamos
               </h3>
             </template>
 

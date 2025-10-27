@@ -1,11 +1,11 @@
 <script setup lang="ts">
 // Meta tags para SEO
 useHead({
-  title: 'Block Change - Hacemos crecer tu capital con estrategias en activos digitales, de forma segura.',
+  title: 'Block Change',
   meta: [
     {
       name: 'description',
-      content: 'Take control of your financial future with FinPath. Comprehensive tools and expert guidance to help you build wealth and achieve your financial goals.'
+      content: 'Hacemos crecer tu capital con estrategias en activos digitales, de forma segura.'
     }
   ]
 })

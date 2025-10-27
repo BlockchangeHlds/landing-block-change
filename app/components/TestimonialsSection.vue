@@ -3,38 +3,33 @@
 const testimonials = [
   {
     id: 1,
-    quote: 'This app transformed how I manage my money. Highly recommended.',
-    name: 'Frederic Hill',
-    position: 'Founder & CEO',
+    quote: 'Emprendedor fintech con más de una década de experiencia en innovación financiera, blockchain y gestión de inversiones. Fundador y ex CEO de Tranzfer.me, startup que movilizó más de USD 10 M en remesas internacionales, y actual fundador de Remesas.com. Graduado del MIT Bootcamps (New Ventures Leadership), combina su visión estratégica con una sólida base en auditoría y finanzas adquirida en PwC y BDO.',
+    name: 'Alex Zuñiga',
+    position: 'CEO & Co-fundador de BlockChange',
     avatar: 'https://ui-avatars.com/api/?name=Frederic+Hill&size=64&background=1DA977&color=fff'
   },
   {
     id: 2,
-    quote: 'The budgeting features helped me understand my spending habits better. Thank you!',
-    name: 'Julie Kyle',
-    position: 'Account Executive',
+    quote: 'Bachiller en Administración por la Universidad de Lima, Luis Diego cuenta con más de ocho años de experiencia en finanzas corporativas, banca de inversiones y desarrollo de negocios en sectores como energía, infraestructura y activos digitales. A lo largo de su carrera, ha formado parte de firmas líderes como PwC, BTG Pactual, Citi, Credicorp Capital, Kallpa Generación (Inkia Energy) y Celepsa (Grupo UNACEM), donde participó en procesos de inversiones, fusiones y adquisiciones, y expansión regional.',
+    name: 'Luis Diego Barandiaran',
+    position: 'CFO & Co-fundador de BlockChange',
     avatar: 'https://ui-avatars.com/api/?name=Julie+Kyle&size=64&background=1DA977&color=fff'
   },
   {
     id: 3,
-    quote: 'I\'ve seen a noticeable improvement in my savings since using this app. It suits my unique financial needs.',
-    name: 'Brendan Buck',
-    position: 'Data Engineer',
+    quote: 'Estratega con sólida experiencia en inversiones digitales y minería cripto, enfocado en conectar tecnología y finanzas para generar valor sostenible. Ingeniero industrial y cofundador de Sumato Brands.\n' +
+      'Formación en Fintech, Criptomonedas y Estrategias de Inversión Digital por la Pontificia Universidad Católica de Chile y la University of Michigan respalda su visión integral sobre el futuro de los activos digitales.\n' +
+      'En BlockChange, lidera la estrategia y expansión del fondo, combinando análisis técnico, gestión de riesgo y visión estratégica para construir modelos de inversión transparentes, rentables y alineados con el futuro financiero descentralizado.',
+    name: 'Lawrence Campos',
+    position: 'CIO & Co-fundador de Blockchange',
     avatar: 'https://ui-avatars.com/api/?name=Brendan+Buck&size=64&background=1DA977&color=fff'
   },
   {
     id: 4,
-    quote: 'Easy-to-use and effective. It\'s like having a financial advisor in my pocket. Great value for money.',
-    name: 'Paige Lowery',
-    position: 'Head of Brand',
+    quote: 'Consultor legal especialista en Mercado de Valores, Protección de Datos Personales y Cumplimiento interno. Ha trabajado en repetidas ocasiones como especialista técnico en diversos proyectos de para organismos internacionales. Graduado del Programa de Especialización para Ejecutivos en Derecho Corporativo de la Universidad ESAN y premiado con el reconocimiento 4C por su perfil ético por la Universidad Antonio Ruiz de Montoya.',
+    name: 'Bruno Jeri',
+    position: 'Head of Legal de BlockChange',
     avatar: 'https://ui-avatars.com/api/?name=Paige+Lowery&size=64&background=1DA977&color=fff'
-  },
-  {
-    id: 5,
-    quote: 'The app\'s reminders keep me on track with bills. I love the custom options. Super helpful!',
-    name: 'Stefan Ball',
-    position: 'Marketing Manager',
-    avatar: 'https://ui-avatars.com/api/?name=Stefan+Ball&size=64&background=1DA977&color=fff'
   }
 ]
 </script>
@@ -49,11 +44,12 @@ const testimonials = [
       <!-- Título de la sección -->
       <div class="text-center mb-16">
         <h2
-          class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-4xl mx-auto"
+          class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-4xl mx-auto pb-5"
           :style="{ color: '#00204B' }"
         >
-          Hear success stories from our satisfied users
+          Quienes Somos
         </h2>
+        <p>Tanto si estás dando tus primeros pasos como inversionista o quieres llevar tu capital a otro nivel, en BlockChange combinamos tecnología y estrategia para que tus inversiones trabajen por ti.</p>
       </div>
 
       <!-- Grid de testimonios -->

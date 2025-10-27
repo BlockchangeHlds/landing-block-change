@@ -17,7 +17,9 @@ const productFeatures = [
     id: 3,
     icon: 'i-heroicons-funnel',
     title: 'Riesgo estructurado y mitigado',
-    description: 'El 30% se invierte en criptodivisas, ETFs y commodities tokenizados, otro 30% en activos virtuales a más de 6 meses, y el 40% restante en stablecoins y USD en protocolos de rentabilidad fija.'
+    description: '30%: Invertido en criptodivisas, ETFs y commodities tokenizados.\n' +
+      '30%: Invertido en activos virtuales en Spot.\n' +
+      '40%: Liquidez concentrada en protocolos de rentabilidad fija de stablecoins.'
   },
   {
     id: 4,
@@ -38,13 +40,12 @@ const productFeatures = [
           class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-4xl mx-auto"
           :style="{ color: '#00204B' }"
         >
-          Forma parte del mercado más rentable
-          de esta generación
+          Forma parte del mercado más rentable de esta generación
         </h2>
 
         <p class="pt-2">
           Invierte en activos virtuales y genera hasta 20%
-          de rentabilidad en soles y dólares.
+          de rentabilidad en dólares.
         </p>
       </div>
 

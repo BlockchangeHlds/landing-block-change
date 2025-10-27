@@ -7,11 +7,15 @@ const heroFeatures = [
   },
   {
     icon: 'i-heroicons-check-circle',
-    text: 'Inversiones desde $10,000'
+    text: 'Inversión desde $10,000'
   },
   {
     icon: 'i-heroicons-check-circle',
     text: 'Distribución de ganancias mensuales'
+  },
+  {
+    icon: 'i-heroicons-check-circle',
+    text: 'Reportes mensuales con detalle de operaciones'
   }
 ]
 

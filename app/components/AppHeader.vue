@@ -12,7 +12,8 @@
           class="text-2xl font-bold"
           :style="{ color: '#00204B' }"
         >
-          <span style="color: #1DA977;">*</span> BlockChange
+          BLOCK
+          CHANGE
         </div>
       </div>
     </template>
