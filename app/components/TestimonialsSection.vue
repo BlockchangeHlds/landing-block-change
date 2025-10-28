@@ -10,19 +10,19 @@ const testimonials = [
     isCompany: false
   },
   {
-    quote: 'Bachiller en Administración por la Universidad de Lima, cuenta con más de ocho años de experiencia en finanzas corporativas, banca de inversión y desarrollo de negocios en sectores como energía, infraestructura y activos digitales. Ha trabajado en firmas como PwC, BTG Pactual, Citi, Credicorp Capital y Grupo UNACEM, participando en inversiones, fusiones y expansión regional.',
-    name: 'Luis Diego Barandiarán',
-    position: 'CFO & Co-fundador de BlockChange',
-    avatar: 'https://ui-avatars.com/api/?name=Julie+Kyle&size=64&background=1DA977&color=fff',
-    image: 'images/team/luis-diego.png',
-    isCompany: false
-  },
-  {
     quote: 'Ingeniero industrial y cofundador de Sumato Brands, es un estratega en inversiones digitales y minería cripto. Con formación en Fintech e Inversión Digital por la Pontificia Universidad Católica de Chile y la University of Michigan, combina análisis técnico, gestión de riesgo y visión estratégica para liderar la expansión de BlockChange hacia un futuro financiero transparente y descentralizado.',
     name: 'Lawrence Campos',
     position: 'CIO & Co-fundador de Blockchange',
     avatar: 'https://ui-avatars.com/api/?name=Brendan+Buck&size=64&background=1DA977&color=fff',
     image: 'images/team/lawrence.png',
+    isCompany: false
+  },
+  {
+    quote: 'Bachiller en Administración por la Universidad de Lima, cuenta con más de ocho años de experiencia en finanzas corporativas, banca de inversión y desarrollo de negocios en sectores como energía, infraestructura y activos digitales. Ha trabajado en firmas como PwC, BTG Pactual, Citi, Credicorp Capital y Grupo UNACEM, participando en inversiones, fusiones y expansión regional.',
+    name: 'Luis Diego Barandiarán',
+    position: 'CFO & Co-fundador de BlockChange',
+    avatar: 'https://ui-avatars.com/api/?name=Julie+Kyle&size=64&background=1DA977&color=fff',
+    image: 'images/team/luis-diego.png',
     isCompany: false
   },
   {
