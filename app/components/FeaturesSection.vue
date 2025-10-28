@@ -3,29 +3,37 @@
 const productFeatures = [
   {
     id: 1,
-    icon: 'i-heroicons-credit-card',
+    icon: 'i-heroicons-arrow-trending-up',
     title: 'Alto Rendimiento',
-    description: 'Podrías generar más 20% anual en dólares*'
+    description: 'Podrás generar hasta 20% anual en dólares con estrategias optimizadas y probadas en el mercado cripto. Nuestro equipo experto monitorea constantemente las mejores oportunidades de inversión.',
+    bullets: []
   },
   {
     id: 2,
-    icon: 'i-heroicons-chart-pie',
-    title: 'Liquidez',
-    description: 'Retira tu capital después de 6 meses sin penalidad y recibe tus ganancias mensualmente.'
+    icon: 'i-heroicons-eye',
+    title: 'Transparencia',
+    description: '',
+    bullets: [
+      'Recibe tus reportes con el detalle de nuestras operaciones todos los meses',
+      'Comunicate con nuestros socios las veces que creas necesarias'
+    ]
   },
   {
     id: 3,
-    icon: 'i-heroicons-funnel',
+    icon: 'i-heroicons-shield-check',
     title: 'Riesgo estructurado y mitigado',
-    description: '30%: Invertido en criptodivisas, ETFs y commodities tokenizados.\n' +
-      '30%: Invertido en activos virtuales en Spot.\n' +
-      '40%: Liquidez concentrada en protocolos de rentabilidad fija de stablecoins.'
+    description: '',
+    bullets: [
+      '30%: En criptodivisas, ETFs y commodities tokenizados',
+      '30%: En activos virtuales en Spot',
+      '40%: En protocolos de rentabilidad fija de stablecoins'
+    ]
   },
   {
     id: 4,
-    icon: 'i-heroicons-document-chart-bar',
-    title: 'Transparencia',
-    description: 'Tailor reports based on preferred time frames, and specific financial areas of interest.'
+    icon: 'i-heroicons-bolt',
+    title: 'Liquidez Garantizada',
+    description: 'Retira tu capital después de 6 meses sin penalidad y recibe tu ganancia de forma inmediata. Sin trabas ni complicaciones, tu dinero disponible cuando lo necesites.'
   }
 ]
 </script>
@@ -50,7 +58,7 @@ const productFeatures = [
       </div>
 
       <!-- Grid de características -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div
           v-for="feature in productFeatures"
           :key="feature.id"
@@ -79,9 +87,32 @@ const productFeatures = [
           </h3>
 
           <!-- Descripción -->
-          <p class="text-gray-600 leading-relaxed">
+          <p
+            v-if="feature.description"
+            class="text-gray-600 leading-relaxed"
+          >
             {{ feature.description }}
           </p>
+
+          <!-- Lista de bullets -->
+          <ul
+            v-if="feature.bullets && feature.bullets.length > 0"
+            class="space-y-3"
+          >
+            <li
+              v-for="(bullet, index) in feature.bullets"
+              :key="index"
+              class="flex items-start"
+            >
+              <span
+                class="inline-block w-1.5 h-1.5 rounded-full mt-2 mr-3 flex-shrink-0"
+                :style="{ backgroundColor: '#00204B' }"
+              />
+              <span class="text-gray-600 leading-relaxed">
+                {{ bullet }}
+              </span>
+            </li>
+          </ul>
         </div>
       </div>
     </UContainer>
