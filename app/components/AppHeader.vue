@@ -24,7 +24,7 @@
     <template #right>
       <a href="#quienes-somos">
         <UButton
-          label="¿Quiénes somos?"
+          label="Empieza aquí"
           color="primary"
           variant="solid"
           size="md"
