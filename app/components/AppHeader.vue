@@ -22,9 +22,9 @@
     </template>
 
     <template #right>
-      <a href="#quienes-somos">
+      <a href="#contactanos">
         <UButton
-          label="Empieza aquí"
+          label="Contáctanos"
           color="primary"
           variant="solid"
           size="md"

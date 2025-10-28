@@ -114,6 +114,7 @@ onBeforeUnmount(() => {
 <template>
   <!-- Call to Action Section -->
   <div
+    id="contactanos"
     class="py-16 sm:py-24 rounded-3xl mx-4 sm:mx-8"
     :style="{ backgroundColor: '#00204B' }"
   >
@@ -246,7 +247,7 @@ onBeforeUnmount(() => {
 
               <!-- reCAPTCHA v2 -->
               <div class="flex justify-center py-4">
-                <div ref="recaptchaContainer" />
+                <div ref="recaptchaContainer"/>
               </div>
 
               <!-- Botón de envío -->
