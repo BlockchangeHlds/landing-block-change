@@ -3,23 +3,15 @@
 const testimonials = [
   {
     quote: 'Emprendedor fintech con más de una década de experiencia en innovación financiera, blockchain y gestión de inversiones. Fundador y ex CEO de Tranzfer.me, startup que movilizó más de USD 10 M en remesas internacionales, y actual fundador de Remesas.com. Graduado del MIT Bootcamps (New Ventures Leadership), combina su visión estratégica con una sólida base en auditoría y finanzas adquirida en PwC y BDO.',
-    name: 'Alex Zuñiga',
+    name: 'Alex Zúñiga',
     position: 'CEO & Co-fundador de BlockChange',
     avatar: 'https://ui-avatars.com/api/?name=Frederic+Hill&size=64&background=1DA977&color=fff',
     image: 'images/team/alex.png',
     isCompany: false
   },
   {
-    quote: 'Consultor legal especialista en Mercado de Valores, Protección de Datos Personales y Cumplimiento interno. Ha trabajado en repetidas ocasiones como especialista técnico en diversos proyectos de para organismos internacionales. Graduado del Programa de Especialización para Ejecutivos en Derecho Corporativo de la Universidad ESAN y premiado con el reconocimiento 4C por su perfil ético por la Universidad Antonio Ruiz de Montoya.',
-    name: 'Bruno Jeri',
-    position: 'Head of Legal de BlockChange',
-    avatar: 'https://ui-avatars.com/api/?name=Paige+Lowery&size=64&background=1DA977&color=fff',
-    image: 'images/team/bruno.png',
-    isCompany: false
-  },
-  {
     quote: 'Bachiller en Administración por la Universidad de Lima, cuenta con más de ocho años de experiencia en finanzas corporativas, banca de inversión y desarrollo de negocios en sectores como energía, infraestructura y activos digitales. Ha trabajado en firmas como PwC, BTG Pactual, Citi, Credicorp Capital y Grupo UNACEM, participando en inversiones, fusiones y expansión regional.',
-    name: 'Luis Diego Barandiaran',
+    name: 'Luis Diego Barandiarán',
     position: 'CFO & Co-fundador de BlockChange',
     avatar: 'https://ui-avatars.com/api/?name=Julie+Kyle&size=64&background=1DA977&color=fff',
     image: 'images/team/luis-diego.png',
@@ -39,6 +31,14 @@ const testimonials = [
     position: 'CMO & Co-fundador de Blockchange',
     avatar: 'https://ui-avatars.com/api/?name=Brendan+Buck&size=64&background=1DA977&color=fff',
     image: 'images/team/gustavo.png',
+    isCompany: false
+  },
+  {
+    quote: 'Consultor legal especialista en Mercado de Valores, Protección de Datos Personales y Cumplimiento interno. Ha trabajado en repetidas ocasiones como especialista técnico en diversos proyectos de para organismos internacionales. Graduado del Programa de Especialización para Ejecutivos en Derecho Corporativo de la Universidad ESAN y premiado con el reconocimiento 4C por su perfil ético por la Universidad Antonio Ruiz de Montoya.',
+    name: 'Bruno Jeri',
+    position: 'Legal Counsel de BlockChange',
+    avatar: 'https://ui-avatars.com/api/?name=Paige+Lowery&size=64&background=1DA977&color=fff',
+    image: 'images/team/bruno.png',
     isCompany: false
   },
   {

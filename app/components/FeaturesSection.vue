@@ -51,7 +51,7 @@ const productFeatures = [
           Forma parte del mercado más rentable de esta generación
         </h2>
 
-        <p class="pt-2">
+        <p class="pt-2 text-black">
           Invierte en activos virtuales y genera hasta 20%
           de rentabilidad en dólares.
         </p>
