@@ -174,9 +174,11 @@ onBeforeUnmount(() => {
                 <UFormField
                   label="Nombres *"
                   name="name"
+                  :ui="{ label: 'block font-medium text-gray-900' }"
                 >
                   <UInput
                     v-model="consultationForm.name"
+                    :ui="{ base: 'bg-white', root: 'w-full' }"
                     placeholder="Ingresa tu nombre"
                     required
                   />
@@ -185,9 +187,11 @@ onBeforeUnmount(() => {
                 <UFormField
                   label="Apellidos"
                   name="company"
+                  :ui="{ label: 'block font-medium text-gray-900' }"
                 >
                   <UInput
                     v-model="consultationForm.company"
+                    :ui="{ base: 'bg-white', root: 'w-full' }"
                     placeholder="Ingresa tus apellidos"
                   />
                 </UFormField>
@@ -198,9 +202,11 @@ onBeforeUnmount(() => {
                 <UFormField
                   label="Teléfono *"
                   name="phone"
+                  :ui="{ label: 'block font-medium text-gray-900' }"
                 >
                   <UInput
                     v-model="consultationForm.phone"
+                    :ui="{ base: 'bg-white', root: 'w-full' }"
                     placeholder="Ingresa tu teléfono"
                     type="tel"
                     required
@@ -210,9 +216,11 @@ onBeforeUnmount(() => {
                 <UFormField
                   label="Correo electrónico *"
                   name="email"
+                  :ui="{ label: 'block font-medium text-gray-900' }"
                 >
                   <UInput
                     v-model="consultationForm.email"
+                    :ui="{ base: 'bg-white', root: 'w-full' }"
                     placeholder="Ingresa tu correo"
                     type="email"
                     required
@@ -222,14 +230,15 @@ onBeforeUnmount(() => {
 
               <!-- Área de texto -->
               <UFormField
-                label="Anything else you would like us to know?"
+                label="Cuéntanos un poco sobre ti"
                 name="message"
+                :ui="{ label: 'block font-medium text-gray-900' }"
               >
                 <UTextarea
                   v-model="consultationForm.message"
-                  placeholder="Tell us more about your needs..."
+                  :ui="{ base: 'bg-white', root: 'w-full' }"
+                  placeholder="Cuéntanos cómo podemos ayudarte..."
                   :rows="5"
-                  class="w-full"
                 />
               </UFormField>
 
@@ -247,7 +256,7 @@ onBeforeUnmount(() => {
 
               <!-- reCAPTCHA v2 -->
               <div class="flex justify-center py-4">
-                <div ref="recaptchaContainer"/>
+                <div ref="recaptchaContainer" />
               </div>
 
               <!-- Botón de envío -->
