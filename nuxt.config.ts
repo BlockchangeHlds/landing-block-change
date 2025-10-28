@@ -40,6 +40,16 @@ export default defineNuxtConfig({
   },
 
   image: {
-    domains: ['ui-avatars.com']
+    domains: ['ui-avatars.com'],
+    format: ['webp', 'avif', 'jpeg'],
+    quality: 80,
+    screens: {
+      xs: 320,
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280,
+      xxl: 1536
+    }
   }
 })

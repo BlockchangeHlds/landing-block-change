@@ -8,18 +8,21 @@
   >
     <template #title>
       <div class="flex items-center gap-2">
-        <div
-          class="text-2xl font-bold"
-          :style="{ color: '#00204B' }"
+        <a
+          href="/"
+          class="flex items-center"
         >
-          BLOCK
-          CHANGE
-        </div>
+          <img
+            src="/logos/logo.png"
+            class="h-10 w-auto object-contain"
+            alt="BlockChange Logo"
+          >
+        </a>
       </div>
     </template>
 
     <template #right>
-      <a href="#testimonials">
+      <a href="#quienes-somos">
         <UButton
           label="¿Quiénes somos?"
           color="primary"
