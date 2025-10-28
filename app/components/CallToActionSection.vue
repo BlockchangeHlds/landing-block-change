@@ -6,8 +6,14 @@ const consultationForm = reactive({
   phone: '',
   email: '',
   message: '',
-  agreeToPrivacy: false
+  agreeToPrivacy: false,
+  recaptchaToken: ''
 })
+
+// Referencia para el contenedor de reCAPTCHA
+const recaptchaContainer = ref<HTMLDivElement>()
+const recaptchaWidgetId = ref<number | null>(null)
+const isRecaptchaReady = ref(false)
 
 // Características del CTA final
 const ctaFeatures = [
@@ -21,11 +27,88 @@ const ctaFeatures = [
   }
 ]
 
+// Cargar el script de reCAPTCHA
+onMounted(() => {
+  // Verificar si el script ya está cargado
+  if (window.grecaptcha) {
+    initRecaptcha()
+    return
+  }
+
+  // Cargar el script de reCAPTCHA
+  const script = document.createElement('script')
+  script.src = 'https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit'
+  script.async = true
+  script.defer = true
+
+  // Definir callback global
+  window.onRecaptchaLoad = () => {
+    initRecaptcha()
+  }
+
+  document.head.appendChild(script)
+})
+
+// Inicializar reCAPTCHA
+function initRecaptcha() {
+  if (!recaptchaContainer.value || !window.grecaptcha) return
+
+  const config = useRuntimeConfig()
+  const siteKey = config.public.recaptchaSiteKey || 'TU_SITE_KEY_AQUI'
+
+  try {
+    recaptchaWidgetId.value = window.grecaptcha.render(recaptchaContainer.value, {
+      'sitekey': siteKey,
+      'callback': onRecaptchaSuccess,
+      'expired-callback': onRecaptchaExpired,
+      'error-callback': onRecaptchaError
+    })
+    isRecaptchaReady.value = true
+  } catch (error) {
+    console.error('Error al inicializar reCAPTCHA:', error)
+  }
+}
+
+// Callback cuando reCAPTCHA es exitoso
+function onRecaptchaSuccess(token: string) {
+  consultationForm.recaptchaToken = token
+}
+
+// Callback cuando reCAPTCHA expira
+function onRecaptchaExpired() {
+  consultationForm.recaptchaToken = ''
+}
+
+// Callback cuando hay error en reCAPTCHA
+function onRecaptchaError() {
+  consultationForm.recaptchaToken = ''
+  console.error('Error en reCAPTCHA')
+}
+
 // Función para enviar el formulario
 function onSubmitConsultation() {
+  // Validar que reCAPTCHA esté completado
+  if (!consultationForm.recaptchaToken) {
+    alert('Por favor, completa el reCAPTCHA')
+    return
+  }
+
   console.log('Consultation form submitted:', consultationForm)
   // Aquí iría la lógica para enviar el formulario
+
+  // Resetear reCAPTCHA después del envío
+  if (recaptchaWidgetId.value !== null && window.grecaptcha) {
+    window.grecaptcha.reset(recaptchaWidgetId.value)
+    consultationForm.recaptchaToken = ''
+  }
 }
+
+// Limpiar al desmontar
+onBeforeUnmount(() => {
+  if (window.onRecaptchaLoad) {
+    delete window.onRecaptchaLoad
+  }
+})
 </script>
 
 <template>
@@ -161,6 +244,11 @@ function onSubmitConsultation() {
                 </label>
               </div>
 
+              <!-- reCAPTCHA v2 -->
+              <div class="flex justify-center py-4">
+                <div ref="recaptchaContainer" />
+              </div>
+
               <!-- Botón de envío -->
               <UButton
                 type="submit"
@@ -170,7 +258,7 @@ function onSubmitConsultation() {
                 block
                 :style="{ backgroundColor: '#1DA977' }"
                 class="hover:opacity-90 text-white mt-6"
-                :disabled="!consultationForm.agreeToPrivacy"
+                :disabled="!consultationForm.agreeToPrivacy || !consultationForm.recaptchaToken"
               />
             </UForm>
           </UCard>

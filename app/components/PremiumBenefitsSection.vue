@@ -147,7 +147,8 @@ const maxValue = 40000
 
             <!-- Disclaimer -->
             <p class="text-xs text-gray-600 text-center mt-4">
-              *Esta proyección es referencial y no constituye una oferta ni
+              *Esta proyección es referencial y no constituye una oferta pública ni garantiza rentabilidad. Las oportunidades presentadas por Blockchange son privadas,
+              se evalúan caso por caso, y se realizan bajo contrato directo entre partes
             </p>
           </div>
         </div>

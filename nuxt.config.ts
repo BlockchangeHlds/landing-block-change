@@ -51,5 +51,15 @@ export default defineNuxtConfig({
       xl: 1280,
       xxl: 1536
     }
+  },
+
+  runtimeConfig: {
+    // Variables privadas (solo servidor)
+    recaptchaSecretKey: process.env.RECAPTCHA_SECRET_KEY,
+
+    // Variables públicas (cliente y servidor)
+    public: {
+      recaptchaSiteKey: process.env.NUXT_PUBLIC_RECAPTCHA_SITE_KEY
+    }
   }
 })
