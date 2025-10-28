@@ -67,7 +67,7 @@ const testimonials = [
         >
           Quienes Somos
         </h2>
-        <p>
+        <p class="text-black">
           Tanto si estás dando tus primeros pasos como inversionista o quieres llevar tu capital a otro nivel, en
           BlockChange combinamos tecnología y estrategia para que tus inversiones trabajen por ti.
         </p>
