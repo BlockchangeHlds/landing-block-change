@@ -25,14 +25,14 @@ const dashboardMetrics = [
     title: 'Activos bajo nuestra\n' +
       'gestión desde el 2023',
     value: '$1,6M',
-    change: '10% from last week',
+    change: '',
     trend: 'up'
   },
   {
     title: 'Costo \n' +
       'de mantenimiento Anual',
     value: '0.083%',
-    change: '12% from last week',
+    change: '',
     trend: 'up'
   },
   {
