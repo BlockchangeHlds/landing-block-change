@@ -16,11 +16,11 @@ useHead({
     <!-- Hero Section -->
     <HeroSection />
 
-    <!-- Premium Benefits Section -->
-    <PremiumBenefitsSection />
+    <!-- Calculator Section -->
+    <CalculatorSection />
 
-    <!-- Testimonials Section -->
-    <TestimonialsSection />
+    <!-- Team Section -->
+    <TeamSection />
 
     <!-- Features Section -->
     <FeaturesSection />
