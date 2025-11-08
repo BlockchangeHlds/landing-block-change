@@ -211,8 +211,8 @@ const formatCurrency = (value: number) => {
                 <UIcon name="i-heroicons-information-circle" />
                 <template #content>
                   <p class="text-xs leading-relaxed max-w-md bg-white p-3 rounded-md border-gray-200">
-                    Las estimaciones o simulaciones son ilustrativas y pueden o no corresponder al resultado final de la inversión. 
-                    Las estimaciones son producto del cálculo que incluye rentabilidades históricas, pagos por intereses y/o pagos por el vencimiento de los activos subyacentes. 
+                    Las estimaciones o simulaciones son ilustrativas y pueden o no corresponder al resultado final de la inversión.
+                    Las estimaciones son producto del cálculo que incluye rentabilidades históricas, pagos por intereses y/o pagos por el vencimiento de los activos subyacentes.
                     La rentabilidad o ganancia obtenida en el pasado no garantiza que se repita en el futuro. La rentabilidad anual es calculada a partir de la información histórica de los últimos seis meses.
                   </p>
                 </template>
@@ -239,25 +239,20 @@ const formatCurrency = (value: number) => {
               <!-- Barras del gráfico -->
               <div class="flex-1 ml-12 flex items-end justify-center gap-12 relative z-20" style="height: calc(100% - 1.5rem);">
                 <!-- Columna inicial (inversión inicial - estática) -->
-                <div class="flex flex-col items-center gap-1 h-full justify-end relative">
+                <div class="relative flex items-end" style="height: 100%;">
                   <div
                     class="w-24 bg-gray-900 rounded-t"
                     :style="{
                       height: `${(initialInvestment / parseFloat(calculateReturn.totalAmount)) * 100}%`
                     }"
                   />
-                  <span class="text-xs text-gray-700 font-medium absolute -bottom-5">${{ formatCurrency(initialInvestment) }}</span>
+                  <span class="text-xs text-gray-700 font-medium absolute -bottom-5 left-1/2 -translate-x-1/2">${{ formatCurrency(initialInvestment) }}</span>
                 </div>
 
                 <!-- Columna final (capital + ganancia) -->
-                <div class="flex flex-col items-center gap-1 h-full justify-end relative">
-                  <div
-                    class="w-24 bg-green-600 rounded-t"
-                    :style="{
-                      height: `${(parseFloat(calculateReturn.totalAmount) / parseFloat(calculateReturn.totalAmount)) * 100}%`
-                    }"
-                  />
-                  <span class="text-xs text-gray-700 font-medium absolute -bottom-5">${{ formatCurrency(parseFloat(calculateReturn.totalAmount)) }}</span>
+                <div class="relative flex items-end" style="height: 130%;">
+                  <div class="w-24 bg-green-600 rounded-t" style="height: 100%;" />
+                  <span class="text-xs text-gray-700 font-medium absolute -bottom-5 left-1/2 -translate-x-1/2">${{ formatCurrency(parseFloat(calculateReturn.totalAmount)) }}</span>
                 </div>
               </div>
 
