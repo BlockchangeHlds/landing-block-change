@@ -1,7 +1,31 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 
-const initialInvestment = ref(100)
+const initialInvestment = ref(10000)
+const displayInvestment = ref('10,000.00')
+
+// Validar monto mínimo
+const validateInvestment = () => {
+  if (initialInvestment.value < 10000) {
+    initialInvestment.value = 10000
+  }
+}
+
+// Formatear input mientras el usuario escribe
+const handleInvestmentInput = (event: Event) => {
+  const input = event.target as HTMLInputElement
+  const value = input.value.replace(/[^0-9.]/g, '')
+  const numValue = parseFloat(value) || 0
+
+  initialInvestment.value = numValue >= 10000 ? numValue : 10000
+  displayInvestment.value = formatCurrency(initialInvestment.value)
+}
+
+// Actualizar display cuando pierde el foco
+const handleInvestmentBlur = () => {
+  validateInvestment()
+  displayInvestment.value = formatCurrency(initialInvestment.value)
+}
 
 // Opciones de meses disponibles
 const monthOptions = [6, 12, 24, 36]
@@ -41,7 +65,7 @@ const calculateReturn = computed(() => {
 })
 
 const clearCalculator = () => {
-  initialInvestment.value = 100
+  initialInvestment.value = 10000
   selectedMonthIndex.value = 1 // Reset a 12 meses
 }
 
@@ -83,11 +107,14 @@ const formatCurrency = (value: number) => {
               <UIcon name="i-heroicons-information-circle" class="w-4 h-4 text-gray-400" />
             </label>
             <UInput
-              v-model.number="initialInvestment"
-              type="number"
+              v-model="displayInvestment"
+              type="text"
               size="lg"
               :ui="{ base: 'text-lg' }"
+              @input="handleInvestmentInput"
+              @blur="handleInvestmentBlur"
             />
+            <p class="text-xs text-gray-500 mt-1">Monto mínimo: $10,000.00</p>
           </div>
 
           <!-- Meses de inversión -->
