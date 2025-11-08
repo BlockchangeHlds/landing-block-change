@@ -234,7 +234,7 @@ const formatCurrency = (value: number) => {
               <!-- Tasa de retorno -->
               <div class="p-3 bg-[#00204B] rounded-lg h-10 flex items-center">
                 <p class="text-white text-sm font-medium">
-                  Tasa de retorno {{ annualReturn }}%
+                  Tasa de retorno {{ calculateReturn.percentage }}%
                 </p>
               </div>
 
