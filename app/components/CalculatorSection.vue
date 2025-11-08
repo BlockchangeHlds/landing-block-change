@@ -126,7 +126,9 @@ const formatCurrency = (value: number) => {
           <div>
             <label class="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
               Inversión inicial en dólares
-              <UIcon name="i-heroicons-information-circle" class="w-4 h-4 text-gray-400" />
+              <UTooltip text="Ingresa el monto que deseas invertir. El mínimo es $10,000.00 dólares">
+                <UIcon name="i-heroicons-information-circle" class="w-4 h-4 text-gray-400 cursor-help" />
+              </UTooltip>
             </label>
             <UInput
               v-model="displayInvestment"
@@ -143,7 +145,9 @@ const formatCurrency = (value: number) => {
           <div>
             <label class="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
               Meses de inversión
-              <UIcon name="i-heroicons-information-circle" class="w-4 h-4 text-gray-400" />
+              <UTooltip text="Selecciona el plazo de tu inversión: 6, 12, 24 o 36 meses">
+                <UIcon name="i-heroicons-information-circle" class="w-4 h-4 text-gray-400 cursor-help" />
+              </UTooltip>
             </label>
             <div class="space-y-3">
               <div class="flex items-center justify-between text-sm text-gray-600">
@@ -189,17 +193,31 @@ const formatCurrency = (value: number) => {
           <!-- Gráfico -->
           <div>
             <div class="flex items-center gap-2 mb-3">
-              <UIcon name="i-heroicons-chart-bar" class="w-5 h-5 text-primary-500" />
+              <UIcon name="i-heroicons-chart-bar" />
               <h3 class="text-lg font-bold text-gray-900">
                 Resultados de la calculadora de ganancias
               </h3>
             </div>
-            <p class="text-xs text-gray-600 mb-1">
-              <label class="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
+            <div class="flex items-center gap-2 mb-1">
+              <p class="text-xs text-gray-600">
                 *Retorno anual-últimos 6M
-                <UIcon name="i-heroicons-information-circle" class="w-4 h-4 text-gray-400" />
-              </label>
-            </p>
+              </p>
+              <UTooltip
+                :ui="{
+                  content: '!bg-white !text-gray-900 max-w-md z-50 shadow-xl border border-gray-200 p-3 rounded-lg',
+                  text: 'whitespace-normal break-words !text-gray-900'
+                }"
+              >
+                <UIcon name="i-heroicons-information-circle" />
+                <template #content>
+                  <p class="text-xs leading-relaxed max-w-md bg-white p-3 rounded-md border-gray-200">
+                    Las estimaciones o simulaciones son ilustrativas y pueden o no corresponder al resultado final de la inversión. 
+                    Las estimaciones son producto del cálculo que incluye rentabilidades históricas, pagos por intereses y/o pagos por el vencimiento de los activos subyacentes. 
+                    La rentabilidad o ganancia obtenida en el pasado no garantiza que se repita en el futuro. La rentabilidad anual es calculada a partir de la información histórica de los últimos seis meses.
+                  </p>
+                </template>
+              </UTooltip>
+            </div>
             <p class="text-xl font-bold text-green-600 mb-3">+{{ calculateReturn.percentage }}%</p>
 
             <!-- Gráfico simple con barras -->
