@@ -1,268 +1,253 @@
 <script setup lang="ts">
-// Estado de la calculadora
-const calculatorForm = reactive({
-  amount: 10000,
-  frequency: 'Trimestral',
-  additionalAmount: 5000,
-  term: 12
+import { ref, computed } from 'vue'
+
+const initialInvestment = ref(100)
+
+// Opciones de meses disponibles
+const monthOptions = [6, 12, 24, 36]
+const selectedMonthIndex = ref(1) // Índice 1 = 12 meses por defecto
+
+// Computed para obtener los meses seleccionados
+const investmentMonthsValue = computed(() => monthOptions[selectedMonthIndex.value] || 12)
+
+// Tasa de rendimiento anual proyectada según los meses
+const annualReturn = computed(() => {
+  const months = investmentMonthsValue.value
+  if (months <= 12) {
+    return 17.9
+  } else if (months <= 24) {
+    return 41.44
+  } else {
+    return 59.11
+  }
 })
 
-const frequencyOptions = [
-  'Mensual',
-  'Trimestral',
-  'Semestral',
-  'Anual'
-]
+// Calcular el rendimiento
+const calculateReturn = computed(() => {
+  const monthlyRate = annualReturn.value / 100 / 12
+  const months = investmentMonthsValue.value
+  const principal = initialInvestment.value
 
-// Función para calcular las ganancias
-const calculateEarnings = () => {
-  // Lógica de cálculo básica (puede ser más compleja)
-  const annualReturn = 0.20
-  const totalInvestment = calculatorForm.amount + (calculatorForm.additionalAmount * (calculatorForm.term / 3))
-  const projectedEarnings = totalInvestment * annualReturn
-  console.log('Ganancias proyectadas:', projectedEarnings)
+  const totalAmount = principal * Math.pow(1 + monthlyRate, months)
+  const profit = totalAmount - principal
+  const monthlyAverage = profit / months
+
+  return {
+    totalAmount: totalAmount.toFixed(2),
+    profit: profit.toFixed(2),
+    monthlyAverage: monthlyAverage.toFixed(2),
+    percentage: ((profit / principal) * 100).toFixed(1)
+  }
+})
+
+const clearCalculator = () => {
+  initialInvestment.value = 100
+  selectedMonthIndex.value = 1 // Reset a 12 meses
 }
-
-// Datos del gráfico de inversiones
-const chartData = [
-  { quarter: 'Q1', investment: 12000, earnings: 11000 },
-  { quarter: 'Q2', investment: 19000, earnings: 17500 },
-  { quarter: 'Q3', investment: 29000, earnings: 28000 },
-  { quarter: 'Q4', investment: 34000, earnings: 33500 }
-]
-
-const maxValue = 40000
 </script>
 
 <template>
-  <!-- Premium Benefits Section -->
+  <!-- Calculadora de Ganancias Section -->
   <div
     class="py-16 sm:py-24 rounded-3xl mx-4 sm:mx-8 my-8"
     :style="{
-      background: 'linear-gradient(135deg, #00204B 0%, #151342 100%)'
+      background: 'linear-gradient(135deg, #00204B 0%, #001a3d 100%)'
     }"
   >
     <UContainer>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
-        <!-- Calculadora de Ganancias -->
-        <div class="bg-white p-8 rounded-2xl h-full flex flex-col shadow-lg">
-          <!-- Título principal -->
-          <h2 class="text-3xl font-bold text-gray-900 mb-2">
-            ¡Potenciales ganancias!
-          </h2>
+      <!-- Título y descripción -->
+      <div class="text-center mb-12">
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+          ¡Potenciales ganancias!
+        </h2>
+        <p class="text-gray-300 text-base sm:text-lg max-w-3xl mx-auto">
+          Que tus activos digitales trabajen por ti
+        </p>
+      </div>
 
-          <!-- Subtítulo -->
-          <p class="text-gray-700 mb-8">
-            Que tus activos digitales trabajen por ti
-          </p>
+      <!-- Calculadora Card -->
+      <UCard class="mb-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
+          <!-- Inversión Inicial -->
+          <div>
+            <label class="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
+              Inversión inicial
+              <UIcon name="i-heroicons-information-circle" class="w-4 h-4 text-gray-400" />
+            </label>
+            <UInput
+              v-model.number="initialInvestment"
+              type="number"
+              size="lg"
+              :ui="{ base: 'text-lg' }"
+            />
+          </div>
 
-          <!-- Formulario de la calculadora -->
-          <div class="space-y-6 flex-1 flex flex-col">
-            <!-- Vas a invertir en -->
-            <!-- <div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-4">
-                Vas a invertir en:
-              </h3>
-            </div> -->
-
-            <!-- Monto inicial -->
-            <div class="space-y-2">
-              <label class="text-base font-medium text-gray-900">
-                ¿Cuál es el monto?
-              </label>
-              <UInput
-                v-model="calculatorForm.amount"
-                type="number"
-                placeholder="$10,000.00"
-                class="text-lg"
-                size="lg"
+          <!-- Meses de inversión -->
+          <div>
+            <label class="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
+              Meses de inversión
+              <UIcon name="i-heroicons-information-circle" class="w-4 h-4 text-gray-400" />
+            </label>
+            <div class="space-y-3">
+              <div class="flex items-center justify-between text-sm text-gray-600">
+                <span>6 meses</span>
+                <span class="font-bold text-lg text-gray-900">{{ investmentMonthsValue }} meses</span>
+                <span>36 meses</span>
+              </div>
+              <input
+                v-model.number="selectedMonthIndex"
+                type="range"
+                min="0"
+                max="3"
+                step="1"
+                class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary-500"
               />
             </div>
+          </div>
 
-            <!-- Aportes adicionales -->
-            <div class="grid grid-cols-2 gap-4">
-              <div class="space-y-2">
-                <label class="text-base font-medium text-gray-900">
-                  ¿Aportes adicionales?
-                </label>
-                <USelect
-                  v-model="calculatorForm.frequency"
-                  :options="frequencyOptions"
-                  size="lg"
-                />
-              </div>
-
-              <div class="space-y-2">
-                <label class="text-base font-medium text-gray-900">
-                  Monto de cada aporte
-                </label>
-                <UInput
-                  v-model="calculatorForm.additionalAmount"
-                  type="number"
-                  placeholder="$5,000.00"
-                  size="lg"
-                />
-              </div>
+          <!-- Rendimiento y Botones -->
+          <div class="flex flex-col gap-4">
+            <div class="text-center lg:text-left">
+              <p class="text-sm text-gray-600 mb-1">Rendimiento anual proyectado:</p>
+              <p class="text-3xl font-bold text-gray-900">{{ annualReturn }}%*</p>
             </div>
-
-            <!-- Plazo -->
-            <div class="space-y-4">
-              <label class="text-base font-medium text-gray-900">
-                Plazo:
-              </label>
-              <div class="px-4">
-                <USlider
-                  v-model="calculatorForm.term"
-                  :min="1"
-                  :max="36"
-                  :step="1"
-                  class="w-full"
-                />
-                <div class="flex justify-between text-sm text-gray-600 mt-2">
-                  <span>1 mes</span>
-                  <span>{{ calculatorForm.term }} meses</span>
-                  <span>36 meses</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Rendimiento proyectado -->
-            <div class="bg-white p-4 rounded-lg mt-auto">
-              <p class="text-lg font-semibold text-gray-900 mb-4">
-                Rendimiento anual proyectado: <span class="text-xl">20%*</span>
-              </p>
-
-              <!-- Botón Calcular -->
+            <div class="flex gap-3">
               <UButton
-                label="Calcular"
-                variant="solid"
+                color="primary"
                 size="lg"
-                class="w-full text-white py-3"
-                :style="{
-                  'background-color': '#1DA977'
-                }"
-                @click="calculateEarnings"
-              />
+                class="flex-1"
+                @click="() => {}"
+              >
+                Calcular resultados
+              </UButton>
+              <UButton
+                color="neutral"
+                size="lg"
+                variant="outline"
+                @click="clearCalculator"
+              >
+                <UIcon name="i-heroicons-arrow-path" class="w-5 h-5" />
+                Limpiar
+              </UButton>
             </div>
-
-            <!-- Disclaimer -->
-            <p class="text-xs text-gray-600 text-center mt-4">
-              *Esta proyección es referencial y no constituye una oferta pública ni garantiza rentabilidad. Las oportunidades presentadas por Blockchange son privadas,
-              se evalúan caso por caso, y se realizan bajo contrato directo entre partes
-            </p>
           </div>
         </div>
+      </UCard>
 
-        <!-- Gráfico de Inversiones -->
-        <div class="bg-white p-8 rounded-2xl h-full flex flex-col shadow-lg">
-          <!-- Header del gráfico -->
-          <div class="mb-6">
-            <h3 class="text-lg font-semibold mb-2 text-gray-900">
-              En los últimos 12 meses pudiste haber alcanzado
-            </h3>
-            <div class="flex items-center gap-4">
-              <span class="text-3xl font-bold text-gray-900">$36,000.00</span>
-              <UBadge
-                label="+ 20%"
-                variant="solid"
-                class="px-3 py-1 text-sm font-semibold text-white"
-                :style="{ 'background-color': '#1DA977' }"
-              />
+      <!-- Resultados Card -->
+      <UCard>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <!-- Gráfico -->
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <UIcon name="i-heroicons-chart-bar" class="w-5 h-5 text-primary-500" />
+              <h3 class="text-lg font-bold text-gray-900">
+                Resultados de la calculadora de ganancias
+              </h3>
             </div>
-          </div>
+            <p class="text-xs text-gray-600 mb-1">*Retorno anual-últimos 6M</p>
+            <p class="text-xl font-bold text-green-600 mb-3">+{{ calculateReturn.percentage }}%</p>
 
-          <!-- Gráfico de barras -->
-          <div class="relative h-64 sm:h-80 mb-6">
-            <!-- Líneas de referencia -->
-            <div class="absolute inset-0 flex flex-col justify-between text-xs sm:text-sm text-gray-700 font-medium">
-              <div class="flex items-center">
-                <span class="w-12 sm:w-16">$40,000</span>
-                <div class="flex-1 h-px bg-gray-400" />
+            <!-- Gráfico simple con barras -->
+            <div class="relative h-32 flex items-end justify-between gap-1">
+              <!-- Eje Y -->
+              <div class="absolute left-0 top-0 bottom-0 flex flex-col justify-between text-xs text-gray-500">
+                <span>${{ Math.round(parseFloat(calculateReturn.totalAmount)) }}</span>
+                <span>${{ Math.round(parseFloat(calculateReturn.totalAmount) * 0.5) }}</span>
+                <span>$0</span>
               </div>
-              <div class="flex items-center">
-                <span class="w-12 sm:w-16">$30,000</span>
-                <div class="flex-1 h-px bg-gray-400" />
-              </div>
-              <div class="flex items-center">
-                <span class="w-12 sm:w-16">$20,000</span>
-                <div class="flex-1 h-px bg-gray-400" />
-              </div>
-              <div class="flex items-center">
-                <span class="w-12 sm:w-16">$10,000</span>
-                <div class="flex-1 h-px bg-gray-400" />
-              </div>
-              <div class="flex items-center">
-                <span class="w-12 sm:w-16">$0</span>
-                <div class="flex-1 h-px bg-gray-400" />
-              </div>
-            </div>
 
-            <!-- Barras y línea de tendencia -->
-            <div class="absolute inset-0 pl-12 sm:pl-16 pr-2 sm:pr-4 pt-2 pb-6 sm:pb-8">
-              <div class="relative h-full flex items-end justify-between gap-2 sm:gap-4">
-                <!-- Barras por trimestre -->
-                <div
-                  v-for="data in chartData"
-                  :key="data.quarter"
-                  class="flex-1 flex flex-col items-center relative"
-                >
-                  <!-- Barra de inversión (verde) -->
+              <!-- Barras del gráfico -->
+              <div class="flex-1 ml-12 h-full flex items-end justify-center gap-12 pb-6">
+                <!-- Columna inicial (inversión inicial - estática) -->
+                <div class="flex flex-col items-center gap-1 h-full justify-end">
                   <div
-                    class="w-full rounded-sm relative"
+                    class="w-24 bg-gray-900 rounded-t"
                     :style="{
-                      'height': `${(data.investment / maxValue) * 100}%`,
-                      'background-color': '#1DA977'
+                      height: `${(initialInvestment / parseFloat(calculateReturn.totalAmount)) * 100}%`
                     }"
                   />
-                  <!-- Etiqueta del trimestre -->
-                  <span class="text-xs sm:text-sm font-medium text-gray-700 mt-2">
-                    {{ data.quarter }}
-                  </span>
+                  <span class="text-xs text-gray-700 font-medium absolute" style="bottom: -20px;">${{ initialInvestment }}</span>
                 </div>
 
-                <!-- Línea de tendencia -->
-                <svg
-                  class="absolute inset-0 w-full h-full pointer-events-none"
-                  viewBox="0 0 100 100"
-                  preserveAspectRatio="none"
-                >
-                  <polyline
-                    points="12.5,85 37.5,65 62.5,25 87.5,15"
-                    fill="none"
-                    :stroke="'#1DA977'"
-                    stroke-width="3"
-                    class="opacity-90"
+                <!-- Columna final (capital + ganancia) -->
+                <div class="flex flex-col items-center gap-1 h-full justify-end">
+                  <div
+                    class="w-24 bg-green-600 rounded-t"
+                    :style="{
+                      height: `${(parseFloat(calculateReturn.totalAmount) / parseFloat(calculateReturn.totalAmount)) * 100}%`
+                    }"
                   />
-                </svg>
+                  <span class="text-xs text-gray-700 font-medium absolute" style="bottom: -20px;">${{ Math.round(parseFloat(calculateReturn.totalAmount)) }}</span>
+                </div>
+              </div>
+
+              <!-- Eje X -->
+              <div class="absolute bottom-0 left-12 right-0 flex justify-between text-xs text-gray-500 -mb-8">
+                <span>Hoy</span>
+                <span>{{ investmentMonthsValue }} meses</span>
               </div>
             </div>
           </div>
 
-          <!-- Leyenda -->
-          <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-8 text-xs sm:text-sm mt-auto">
-            <div class="flex items-center gap-2">
-              <div
-                class="w-4 h-4 rounded-sm"
-                :style="{ 'background-color': '#1DA977' }"
-              />
-              <span class="font-medium text-gray-700">Inversión</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="font-medium text-gray-700">Ganancia</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="font-bold text-gray-900">VS</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <div
-                class="w-4 h-4 rounded-sm"
-                :style="{ 'background-color': '#00204B' }"
-              />
-              <span class="font-medium text-gray-700">Depósito bancario</span>
+          <!-- Resultados detallados -->
+          <div>
+            <h3 class="text-lg font-bold text-gray-900 mb-4">
+              Tu dinero podría rendir en
+            </h3>
+
+            <div class="space-y-2">
+              <!-- Fila 1: Capital invertido y Plazo -->
+              <div class="grid grid-cols-2 gap-2">
+                <!-- Capital invertido -->
+                <div class="p-4 border border-gray-200 rounded-lg">
+                  <p class="text-2xl font-bold text-green-600 mb-1">
+                    ${{ initialInvestment }}
+                  </p>
+                  <p class="text-xs text-gray-600">Capital invertido</p>
+                </div>
+
+                <!-- Plazo -->
+                <div class="p-4 border border-gray-200 rounded-lg">
+                  <p class="text-2xl font-bold text-green-600 mb-1">
+                    {{ investmentMonthsValue }} meses
+                  </p>
+                  <p class="text-xs text-gray-600">Plazo</p>
+                </div>
+              </div>
+
+              <!-- Tasa de retorno -->
+              <div class="p-3 bg-[#00204B] rounded-lg h-10 flex items-center">
+                <p class="text-white text-sm font-medium">
+                  Tasa de retorno {{ annualReturn }}%
+                </p>
+              </div>
+
+              <!-- Fila 2: Capital + ganancia y Promedio mensual -->
+              <div class="grid grid-cols-2 gap-2">
+                <!-- Capital + ganancia -->
+                <div class="p-4 border border-gray-200 rounded-lg">
+                  <p class="text-2xl font-bold text-gray-900 mb-1">
+                    ${{ Math.round(parseFloat(calculateReturn.totalAmount)) }}
+                  </p>
+                  <p class="text-xs text-green-600 font-medium mb-1">
+                    +${{ Math.round(parseFloat(calculateReturn.profit)) }}
+                  </p>
+                  <p class="text-xs text-gray-600">Capital + ganancia aproximada</p>
+                </div>
+
+                <!-- Promedio mensual -->
+                <div class="p-4 border border-gray-200 rounded-lg">
+                  <p class="text-2xl font-bold text-gray-900 mb-1">
+                    + ${{ Math.round(parseFloat(calculateReturn.monthlyAverage)) }}
+                  </p>
+                  <p class="text-xs text-gray-600">Promedio mensual aproximado</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </UCard>
     </UContainer>
   </div>
 </template>

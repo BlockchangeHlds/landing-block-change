@@ -95,26 +95,18 @@ function onSubmit() {
 
     <template #right>
       <UButton
-        to="https://go.nuxt.com/discord"
-        target="_blank"
-        icon="i-simple-icons-discord"
-        aria-label="Nuxt on Discord"
-        color="neutral"
-        variant="ghost"
-      />
-      <UButton
         to="https://go.nuxt.com/x"
         target="_blank"
-        icon="i-simple-icons-x"
-        aria-label="Nuxt on X"
+        icon="i-simple-icons-instagram"
+        aria-label="Instagram"
         color="neutral"
         variant="ghost"
       />
       <UButton
-        to="https://github.com/nuxt-ui-templates/landing"
+        to="https://www.linkedin.com/company/blockchange-holdings"
         target="_blank"
-        icon="i-simple-icons-github"
-        aria-label="Nuxt UI on GitHub"
+        icon="i-simple-icons-linkedin"
+        aria-label="Block Change on LinkedIn"
         color="neutral"
         variant="ghost"
       />
