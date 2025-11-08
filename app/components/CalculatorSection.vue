@@ -44,6 +44,14 @@ const clearCalculator = () => {
   initialInvestment.value = 100
   selectedMonthIndex.value = 1 // Reset a 12 meses
 }
+
+// Función para formatear montos con comas y decimales
+const formatCurrency = (value: number) => {
+  return new Intl.NumberFormat('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  }).format(value)
+}
 </script>
 
 <template>
@@ -71,7 +79,7 @@ const clearCalculator = () => {
           <!-- Inversión Inicial -->
           <div>
             <label class="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
-              Inversión inicial
+              Inversión inicial en dólares
               <UIcon name="i-heroicons-information-circle" class="w-4 h-4 text-gray-400" />
             </label>
             <UInput
@@ -149,41 +157,48 @@ const clearCalculator = () => {
             <p class="text-xl font-bold text-green-600 mb-3">+{{ calculateReturn.percentage }}%</p>
 
             <!-- Gráfico simple con barras -->
-            <div class="relative h-32 flex items-end justify-between gap-1">
+            <div class="relative h-32 flex items-end justify-between gap-1 pb-6">
+              <!-- Líneas horizontales de referencia -->
+              <div class="absolute left-0 right-0 top-0 bottom-6 flex flex-col justify-between pointer-events-none">
+                <div class="w-full border-t border-gray-200" />
+                <div class="w-full border-t border-gray-200" />
+                <div class="w-full border-t border-gray-200" />
+              </div>
+
               <!-- Eje Y -->
-              <div class="absolute left-0 top-0 bottom-0 flex flex-col justify-between text-xs text-gray-500">
-                <span>${{ Math.round(parseFloat(calculateReturn.totalAmount)) }}</span>
-                <span>${{ Math.round(parseFloat(calculateReturn.totalAmount) * 0.5) }}</span>
-                <span>$0</span>
+              <div class="absolute left-0 top-0 bottom-6 flex flex-col justify-between text-xs text-gray-500 z-10">
+                <span class="bg-white pr-2">${{ formatCurrency(parseFloat(calculateReturn.totalAmount)) }}</span>
+                <span class="bg-white pr-2">${{ formatCurrency(parseFloat(calculateReturn.totalAmount) * 0.5) }}</span>
+                <span class="bg-white pr-2">$0.00</span>
               </div>
 
               <!-- Barras del gráfico -->
-              <div class="flex-1 ml-12 h-full flex items-end justify-center gap-12 pb-6">
+              <div class="flex-1 ml-12 flex items-end justify-center gap-12 relative z-20" style="height: calc(100% - 1.5rem);">
                 <!-- Columna inicial (inversión inicial - estática) -->
-                <div class="flex flex-col items-center gap-1 h-full justify-end">
+                <div class="flex flex-col items-center gap-1 h-full justify-end relative">
                   <div
                     class="w-24 bg-gray-900 rounded-t"
                     :style="{
                       height: `${(initialInvestment / parseFloat(calculateReturn.totalAmount)) * 100}%`
                     }"
                   />
-                  <span class="text-xs text-gray-700 font-medium absolute" style="bottom: -20px;">${{ initialInvestment }}</span>
+                  <span class="text-xs text-gray-700 font-medium absolute -bottom-5">${{ formatCurrency(initialInvestment) }}</span>
                 </div>
 
                 <!-- Columna final (capital + ganancia) -->
-                <div class="flex flex-col items-center gap-1 h-full justify-end">
+                <div class="flex flex-col items-center gap-1 h-full justify-end relative">
                   <div
                     class="w-24 bg-green-600 rounded-t"
                     :style="{
                       height: `${(parseFloat(calculateReturn.totalAmount) / parseFloat(calculateReturn.totalAmount)) * 100}%`
                     }"
                   />
-                  <span class="text-xs text-gray-700 font-medium absolute" style="bottom: -20px;">${{ Math.round(parseFloat(calculateReturn.totalAmount)) }}</span>
+                  <span class="text-xs text-gray-700 font-medium absolute -bottom-5">${{ formatCurrency(parseFloat(calculateReturn.totalAmount)) }}</span>
                 </div>
               </div>
 
               <!-- Eje X -->
-              <div class="absolute bottom-0 left-12 right-0 flex justify-between text-xs text-gray-500 -mb-8">
+              <div class="absolute bottom-0 left-12 right-0 flex justify-between text-xs text-gray-500">
                 <span>Hoy</span>
                 <span>{{ investmentMonthsValue }} meses</span>
               </div>
@@ -202,7 +217,7 @@ const clearCalculator = () => {
                 <!-- Capital invertido -->
                 <div class="p-4 border border-gray-200 rounded-lg">
                   <p class="text-2xl font-bold text-green-600 mb-1">
-                    ${{ initialInvestment }}
+                    ${{ formatCurrency(initialInvestment) }}
                   </p>
                   <p class="text-xs text-gray-600">Capital invertido</p>
                 </div>
@@ -228,10 +243,10 @@ const clearCalculator = () => {
                 <!-- Capital + ganancia -->
                 <div class="p-4 border border-gray-200 rounded-lg">
                   <p class="text-2xl font-bold text-gray-900 mb-1">
-                    ${{ Math.round(parseFloat(calculateReturn.totalAmount)) }}
+                    ${{ formatCurrency(parseFloat(calculateReturn.totalAmount)) }}
                   </p>
                   <p class="text-xs text-green-600 font-medium mb-1">
-                    +${{ Math.round(parseFloat(calculateReturn.profit)) }}
+                    +${{ formatCurrency(parseFloat(calculateReturn.profit)) }}
                   </p>
                   <p class="text-xs text-gray-600">Capital + ganancia aproximada</p>
                 </div>
@@ -239,7 +254,7 @@ const clearCalculator = () => {
                 <!-- Promedio mensual -->
                 <div class="p-4 border border-gray-200 rounded-lg">
                   <p class="text-2xl font-bold text-gray-900 mb-1">
-                    + ${{ Math.round(parseFloat(calculateReturn.monthlyAverage)) }}
+                    +${{ formatCurrency(parseFloat(calculateReturn.monthlyAverage)) }}
                   </p>
                   <p class="text-xs text-gray-600">Promedio mensual aproximado</p>
                 </div>
