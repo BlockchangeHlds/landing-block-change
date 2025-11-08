@@ -19,11 +19,11 @@ const isRecaptchaReady = ref(false)
 const ctaFeatures = [
   {
     icon: 'i-heroicons-check-circle',
-    text: 'Flexible solution'
+    text: 'Solución Flexible'
   },
   {
     icon: 'i-heroicons-check-circle',
-    text: 'Constant updates'
+    text: 'Actualizaciones Constantes'
   }
 ]
 

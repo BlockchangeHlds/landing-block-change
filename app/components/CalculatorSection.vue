@@ -3,6 +3,26 @@ import { ref, computed } from 'vue'
 
 const initialInvestment = ref(10000)
 const displayInvestment = ref('10,000.00')
+const hasInteracted = ref(false)
+const showButton = ref(false)
+let interactionTimeout: ReturnType<typeof setTimeout> | null = null
+
+// Marcar como interactuado
+const markAsInteracted = () => {
+  if (!hasInteracted.value) {
+    hasInteracted.value = true
+
+    // Limpiar timeout anterior si existe
+    if (interactionTimeout) {
+      clearTimeout(interactionTimeout)
+    }
+
+    // Esperar 3 segundos antes de mostrar el botón
+    interactionTimeout = setTimeout(() => {
+      showButton.value = true
+    }, 5000)
+  }
+}
 
 // Validar monto mínimo
 const validateInvestment = () => {
@@ -13,6 +33,7 @@ const validateInvestment = () => {
 
 // Formatear input mientras el usuario escribe
 const handleInvestmentInput = (event: Event) => {
+  markAsInteracted()
   const input = event.target as HTMLInputElement
   const value = input.value.replace(/[^0-9.]/g, '')
   const numValue = parseFloat(value) || 0
@@ -23,6 +44,7 @@ const handleInvestmentInput = (event: Event) => {
 
 // Actualizar display cuando pierde el foco
 const handleInvestmentBlur = () => {
+  markAsInteracted()
   validateInvestment()
   displayInvestment.value = formatCurrency(initialInvestment.value)
 }
@@ -136,33 +158,25 @@ const formatCurrency = (value: number) => {
                 max="3"
                 step="1"
                 class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary-500"
+                @input="markAsInteracted"
               />
             </div>
           </div>
 
           <!-- Rendimiento y Botones -->
-          <div class="flex flex-col gap-4">
-            <div class="text-center lg:text-left">
+          <div class="flex flex-col gap-4 items-center">
+            <div class="text-center">
               <p class="text-sm text-gray-600 mb-1">Rendimiento anual proyectado:</p>
               <p class="text-3xl font-bold text-gray-900">{{ annualReturn }}%*</p>
             </div>
-            <div class="flex gap-3">
+            <div v-if="showButton" class="flex gap-3 w-full justify-center">
               <UButton
                 color="primary"
                 size="lg"
-                class="flex-1"
-                @click="() => {}"
+                class="flex-1 max-w-xs justify-center"
+                to="#contactanos"
               >
-                Calcular resultados
-              </UButton>
-              <UButton
-                color="neutral"
-                size="lg"
-                variant="outline"
-                @click="clearCalculator"
-              >
-                <UIcon name="i-heroicons-arrow-path" class="w-5 h-5" />
-                Limpiar
+                Contáctanos
               </UButton>
             </div>
           </div>
@@ -180,7 +194,12 @@ const formatCurrency = (value: number) => {
                 Resultados de la calculadora de ganancias
               </h3>
             </div>
-            <p class="text-xs text-gray-600 mb-1">*Retorno anual-últimos 6M</p>
+            <p class="text-xs text-gray-600 mb-1">
+              <label class="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
+                *Retorno anual-últimos 6M
+                <UIcon name="i-heroicons-information-circle" class="w-4 h-4 text-gray-400" />
+              </label>
+            </p>
             <p class="text-xl font-bold text-green-600 mb-3">+{{ calculateReturn.percentage }}%</p>
 
             <!-- Gráfico simple con barras -->
