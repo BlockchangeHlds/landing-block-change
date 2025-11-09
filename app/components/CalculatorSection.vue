@@ -59,8 +59,10 @@ const investmentMonthsValue = computed(() => monthOptions[selectedMonthIndex.val
 // Tasa de rendimiento anual proyectada según los meses
 const annualReturn = computed(() => {
   const months = investmentMonthsValue.value
-  if (months <= 12) {
-    return 17.9
+  if (months <= 6) {
+    return 12.31
+  } else if (months <= 12) {
+    return 24.64
   } else if (months <= 24) {
     return 41.44
   } else {
@@ -85,12 +87,6 @@ const calculateReturn = computed(() => {
     percentage: ((profit / principal) * 100).toFixed(1)
   }
 })
-
-const clearCalculator = () => {
-  initialInvestment.value = 10000
-  selectedMonthIndex.value = 1 // Reset a 12 meses
-}
-
 // Función para formatear montos con comas y decimales
 const formatCurrency = (value: number) => {
   return new Intl.NumberFormat('en-US', {
