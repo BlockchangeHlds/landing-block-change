@@ -65,7 +65,7 @@ const testimonials = [
           class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight max-w-4xl mx-auto pb-5"
           :style="{ color: '#00204B' }"
         >
-          Quienes Somos
+          Quiénes Somos
         </h2>
         <p class="text-black">
           Tanto si estás dando tus primeros pasos como inversionista o quieres llevar tu capital a otro nivel, en
