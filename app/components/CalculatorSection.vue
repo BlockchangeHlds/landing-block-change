@@ -200,7 +200,7 @@ const formatCurrency = (value: number) => {
             </div>
             <div class="flex items-center gap-2 mb-1">
               <p class="text-xs text-gray-600">
-                *Retorno anual-últimos 6M
+                *Posible retorno proyectado
               </p>
               <UTooltip
                 :ui="{
