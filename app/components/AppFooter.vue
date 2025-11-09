@@ -110,6 +110,16 @@ function onSubmit() {
         color="neutral"
         variant="ghost"
       />
+      <UButton
+        to="https://forms.gle/9subanERq885CMNNA"
+        target="_blank"
+        icon="i-heroicons-book-open"
+        aria-label="Libro de Reclamaciones"
+        color="neutral"
+        variant="ghost"
+      >
+        Libro de Reclamaciones
+      </UButton>
     </template>
   </UFooter>
 </template>
