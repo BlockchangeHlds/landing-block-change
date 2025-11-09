@@ -72,11 +72,10 @@ const annualReturn = computed(() => {
 
 // Calcular el rendimiento
 const calculateReturn = computed(() => {
-  const monthlyRate = annualReturn.value / 100 / 12
   const months = investmentMonthsValue.value
   const principal = initialInvestment.value
-
-  const totalAmount = principal * Math.pow(1 + monthlyRate, months)
+  const multiplier = 1 + (annualReturn.value / 100)
+  const totalAmount = principal * multiplier
   const profit = totalAmount - principal
   const monthlyAverage = profit / months
 

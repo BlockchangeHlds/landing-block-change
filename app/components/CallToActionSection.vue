@@ -16,16 +16,7 @@ const recaptchaWidgetId = ref<number | null>(null)
 const isRecaptchaReady = ref(false)
 
 // Características del CTA final
-const ctaFeatures = [
-  {
-    icon: 'i-heroicons-check-circle',
-    text: 'Solución Flexible'
-  },
-  {
-    icon: 'i-heroicons-check-circle',
-    text: 'Actualizaciones Constantes'
-  }
-]
+const ctaFeatures = []
 
 // Cargar el script de reCAPTCHA
 onMounted(() => {
