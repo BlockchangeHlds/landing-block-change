@@ -120,7 +120,7 @@ const formatCurrency = (value: number) => {
       </div>
 
       <!-- Calculadora Card -->
-      <UCard class="mb-8">
+      <UCard class="mb-8 bg-white">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
           <!-- Inversión Inicial -->
           <div>
@@ -188,7 +188,7 @@ const formatCurrency = (value: number) => {
       </UCard>
 
       <!-- Resultados Card -->
-      <UCard>
+      <UCard class="bg-white">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <!-- Gráfico -->
           <div>
