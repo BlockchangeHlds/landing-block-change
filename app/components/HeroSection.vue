@@ -3,7 +3,7 @@
 const heroFeatures = [
   {
     icon: 'i-heroicons-check-circle',
-    text: 'Rentabilidad desde 180 días'
+    text: 'Plazo mínimo de permanencia: 6 meses'
   },
   {
     icon: 'i-heroicons-check-circle',
@@ -67,7 +67,7 @@ const dashboardMetrics = [
           <!-- Botones CTA -->
           <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
             <UButton
-              label="Empieza aquí"
+              label="Proyecta tus rendimientos"
               variant="solid"
               size="lg"
               :style="{ backgroundColor: '#1DA977' }"

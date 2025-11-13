@@ -67,7 +67,7 @@ const testimonials = [
         >
           Quiénes Somos
         </h2>
-        <p class="text-black">
+        <p class="text-black text-justify">
           Tanto si estás dando tus primeros pasos como inversionista o quieres llevar tu capital a otro nivel, en
           BlockChange combinamos tecnología y estrategia para que tus inversiones trabajen por ti.
         </p>
@@ -137,7 +137,7 @@ const testimonials = [
             </div>
 
             <!-- Descripción -->
-            <p class="text-gray-700 leading-relaxed mb-6 text-sm">
+            <p class="text-gray-700 leading-relaxed mb-6 text-sm text-justify">
               {{ testimonial.quote }}
             </p>
           </div>

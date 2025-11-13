@@ -121,9 +121,9 @@ const formatCurrency = (value: number) => {
           <div>
             <label class="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
               Inversión inicial en dólares
-              <UTooltip text="Ingresa el monto que deseas invertir. El mínimo es $10,000.00 dólares">
+              <!--              <UTooltip text="Ingresa el monto que deseas invertir. El mínimo es $10,000.00 dólares">
                 <UIcon name="i-heroicons-information-circle" class="w-4 h-4 text-gray-400 cursor-help" />
-              </UTooltip>
+              </UTooltip> -->
             </label>
             <UInput
               v-model="displayInvestment"
@@ -133,16 +133,21 @@ const formatCurrency = (value: number) => {
               @input="handleInvestmentInput"
               @blur="handleInvestmentBlur"
             />
-            <p class="text-xs text-gray-500 mt-1">Monto mínimo: $10,000.00</p>
+            <p class="text-xs text-gray-500 mt-1">
+              Monto mínimo: $10,000.00
+            </p>
           </div>
 
           <!-- Meses de inversión -->
           <div>
             <label class="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
               Meses de inversión
-              <UTooltip text="Selecciona el plazo de tu inversión: 6, 12, 24 o 36 meses">
-                <UIcon name="i-heroicons-information-circle" class="w-4 h-4 text-gray-400 cursor-help" />
-              </UTooltip>
+              <!--              <UTooltip text="Selecciona el plazo de tu inversión: 6, 12, 24 o 36 meses">
+                <UIcon
+                  name="i-heroicons-information-circle"
+                  class="w-4 h-4 text-gray-400 cursor-help"
+                />
+              </UTooltip> -->
             </label>
             <div class="space-y-3">
               <div class="flex items-center justify-between text-sm text-gray-600">
@@ -158,17 +163,24 @@ const formatCurrency = (value: number) => {
                 step="1"
                 class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary-500"
                 @input="markAsInteracted"
-              />
+              >
             </div>
           </div>
 
           <!-- Rendimiento y Botones -->
           <div class="flex flex-col gap-4 items-center">
             <div class="text-center">
-              <p class="text-sm text-gray-600 mb-1">Rendimiento anual proyectado:</p>
-              <p class="text-3xl font-bold text-gray-900">{{ annualReturn }}%*</p>
+              <p class="text-sm text-gray-600 mb-1">
+                Rendimiento anual proyectado:
+              </p>
+              <p class="text-3xl font-bold text-gray-900">
+                {{ annualReturn }}%*
+              </p>
             </div>
-            <div v-if="showButton" class="flex gap-3 w-full justify-center">
+            <div
+              v-if="showButton"
+              class="flex gap-3 w-full justify-center"
+            >
               <UButton
                 color="primary"
                 size="lg"
@@ -188,7 +200,7 @@ const formatCurrency = (value: number) => {
           <!-- Gráfico -->
           <div>
             <div class="flex items-center gap-2 mb-3">
-              <UIcon name="i-heroicons-chart-bar" />
+<!--              <UIcon name="i-heroicons-chart-bar text-color-black" />-->
               <h3 class="text-lg font-bold text-gray-900">
                 Resultados de la calculadora de ganancias
               </h3>
@@ -197,7 +209,7 @@ const formatCurrency = (value: number) => {
               <p class="text-xs text-gray-600">
                 *Posible retorno proyectado
               </p>
-              <UTooltip
+              <!--              <UTooltip
                 :ui="{
                   content: '!bg-white !text-gray-900 max-w-md z-50 shadow-xl border border-gray-200 p-3 rounded-lg',
                   text: 'whitespace-normal break-words !text-gray-900'
@@ -211,9 +223,11 @@ const formatCurrency = (value: number) => {
                     La rentabilidad o ganancia obtenida en el pasado no garantiza que se repita en el futuro. La rentabilidad anual es calculada a partir de la información histórica de los últimos seis meses.
                   </p>
                 </template>
-              </UTooltip>
+              </UTooltip> -->
             </div>
-            <p class="text-xl font-bold text-green-600 mb-3">+{{ calculateReturn.percentage }}%</p>
+            <p class="text-xl font-bold text-green-600 mb-3">
+              +{{ calculateReturn.percentage }}%
+            </p>
 
             <!-- Gráfico simple con barras -->
             <div class="relative h-32 flex items-end justify-between gap-1 pb-6">
@@ -232,9 +246,15 @@ const formatCurrency = (value: number) => {
               </div>
 
               <!-- Barras del gráfico -->
-              <div class="flex-1 ml-12 flex items-end justify-center gap-12 relative z-20" style="height: calc(100% - 1.5rem);">
+              <div
+                class="flex-1 ml-12 flex items-end justify-center gap-12 relative z-20"
+                style="height: calc(100% - 1.5rem);"
+              >
                 <!-- Columna inicial (inversión inicial - estática) -->
-                <div class="relative flex items-end" style="height: 100%;">
+                <div
+                  class="relative flex items-end"
+                  style="height: 100%;"
+                >
                   <div
                     class="w-24 bg-gray-900 rounded-t"
                     :style="{
@@ -245,14 +265,20 @@ const formatCurrency = (value: number) => {
                 </div>
 
                 <!-- Columna final (capital + ganancia) -->
-                <div class="relative flex items-end" style="height: 130%;">
-                  <div class="w-24 bg-green-600 rounded-t" style="height: 100%;" />
+                <div
+                  class="relative flex items-end"
+                  style="height: 130%;"
+                >
+                  <div
+                    class="w-24 bg-green-600 rounded-t"
+                    style="height: 100%;"
+                  />
                   <span class="text-xs text-gray-700 font-medium absolute -bottom-5 left-1/2 -translate-x-1/2">${{ formatCurrency(parseFloat(calculateReturn.totalAmount)) }}</span>
                 </div>
               </div>
 
               <!-- Eje X -->
-              <div class="absolute bottom-0 left-12 right-0 flex justify-between text-xs text-gray-500">
+              <div class="absolute -bottom-5 left-15 right-0 flex justify-around text-xs text-gray-500">
                 <span>Hoy</span>
                 <span>{{ investmentMonthsValue }} meses</span>
               </div>
@@ -269,19 +295,23 @@ const formatCurrency = (value: number) => {
               <!-- Fila 1: Capital invertido y Plazo -->
               <div class="grid grid-cols-2 gap-2">
                 <!-- Capital invertido -->
-                <div class="p-4 border border-gray-200 rounded-lg">
-                  <p class="text-2xl font-bold text-green-600 mb-1">
+                <div class="p-2 border border-gray-200 rounded-lg">
+                  <p class="text-xs text-gray-600">
+                    Capital invertido
+                  </p>
+                  <p class="text-lg font-bold text-green-600 mb-1 text-center p-2">
                     ${{ formatCurrency(initialInvestment) }}
                   </p>
-                  <p class="text-xs text-gray-600">Capital invertido</p>
                 </div>
 
                 <!-- Plazo -->
-                <div class="p-4 border border-gray-200 rounded-lg">
-                  <p class="text-2xl font-bold text-green-600 mb-1">
+                <div class="p-2 border border-gray-200 rounded-lg">
+                  <p class="text-xs text-gray-600">
+                    Plazo
+                  </p>
+                  <p class="text-lg font-bold text-green-600 mb-1 p-2 text-center">
                     {{ investmentMonthsValue }} meses
                   </p>
-                  <p class="text-xs text-gray-600">Plazo</p>
                 </div>
               </div>
 
@@ -295,22 +325,26 @@ const formatCurrency = (value: number) => {
               <!-- Fila 2: Capital + ganancia y Promedio mensual -->
               <div class="grid grid-cols-2 gap-2">
                 <!-- Capital + ganancia -->
-                <div class="p-4 border border-gray-200 rounded-lg">
-                  <p class="text-2xl font-bold text-gray-900 mb-1">
+                <div class="p-2 border border-gray-200 rounded-lg">
+                  <p class="text-xs text-gray-600">
+                    Capital + ganancia aproximada
+                  </p>
+                  <p class="text-lg font-bold text-gray-900 mb-1 text-center pt-2">
                     ${{ formatCurrency(parseFloat(calculateReturn.totalAmount)) }}
                   </p>
-                  <p class="text-xs text-green-600 font-medium mb-1">
+                  <p class="text-xs text-green-600 font-medium pl-6">
                     +${{ formatCurrency(parseFloat(calculateReturn.profit)) }}
                   </p>
-                  <p class="text-xs text-gray-600">Capital + ganancia aproximada</p>
                 </div>
 
                 <!-- Promedio mensual -->
-                <div class="p-4 border border-gray-200 rounded-lg">
-                  <p class="text-2xl font-bold text-gray-900 mb-1">
+                <div class="p-2 border border-gray-200 rounded-lg">
+                  <p class="text-xs text-gray-600">
+                    Promedio mensual aproximado
+                  </p>
+                  <p class="text-lg font-bold text-gray-900 mb-1 text-center pt-2">
                     +${{ formatCurrency(parseFloat(calculateReturn.monthlyAverage)) }}
                   </p>
-                  <p class="text-xs text-gray-600">Promedio mensual aproximado</p>
                 </div>
               </div>
             </div>

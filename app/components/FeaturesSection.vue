@@ -52,7 +52,7 @@ const productFeatures = [
         </h2>
 
         <p class="pt-2 text-black">
-          Invierte en activos virtuales y genera hasta 20%
+          Invierte en activos digitales y genera hasta 20%
           de rentabilidad en dólares.
         </p>
       </div>
