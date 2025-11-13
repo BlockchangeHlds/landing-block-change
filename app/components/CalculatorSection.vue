@@ -252,35 +252,41 @@ const formatCurrency = (value: number) => {
               >
                 <!-- Columna inicial (inversión inicial - estática) -->
                 <div
-                  class="relative flex items-end"
+                  class="relative flex flex-col items-center"
                   style="height: 100%;"
                 >
-                  <div
-                    class="w-24 bg-gray-900 rounded-t"
-                    :style="{
-                      height: `${(initialInvestment / parseFloat(calculateReturn.totalAmount)) * 100}%`
-                    }"
-                  />
-                  <span class="text-xs text-gray-700 font-medium absolute -bottom-5 left-1/2 -translate-x-1/2">${{ formatCurrency(initialInvestment) }}</span>
+                  <div class="relative flex items-end w-full h-full">
+                    <div
+                      class="w-24 bg-gray-900 rounded-t mx-auto"
+                      :style="{
+                        height: `${(initialInvestment / parseFloat(calculateReturn.totalAmount)) * 100}%`
+                      }"
+                    />
+                    <span class="text-xs text-gray-700 font-medium absolute -bottom-5 left-1/2 -translate-x-1/2 whitespace-nowrap">${{ formatCurrency(initialInvestment) }}</span>
+                  </div>
+                  <!-- Etiqueta de tiempo debajo de la primera barra -->
+                  <div class="absolute -bottom-10 left-1/2 -translate-x-1/2 text-xs text-gray-500">
+                    <span>Hoy</span>
+                  </div>
                 </div>
 
                 <!-- Columna final (capital + ganancia) -->
                 <div
-                  class="relative flex items-end"
+                  class="relative flex flex-col items-center"
                   style="height: 130%;"
                 >
-                  <div
-                    class="w-24 bg-green-600 rounded-t"
-                    style="height: 100%;"
-                  />
-                  <span class="text-xs text-gray-700 font-medium absolute -bottom-5 left-1/2 -translate-x-1/2">${{ formatCurrency(parseFloat(calculateReturn.totalAmount)) }}</span>
+                  <div class="relative flex items-end w-full h-full">
+                    <div
+                      class="w-24 bg-green-600 rounded-t mx-auto"
+                      style="height: 100%;"
+                    />
+                    <span class="text-xs text-gray-700 font-medium absolute -bottom-5 left-1/2 -translate-x-1/2 whitespace-nowrap">${{ formatCurrency(parseFloat(calculateReturn.totalAmount)) }}</span>
+                  </div>
+                  <!-- Etiqueta de tiempo debajo de la segunda barra -->
+                  <div class="absolute -bottom-10 left-1/2 -translate-x-1/3 text-xs text-gray-500 w-full">
+                    <span>{{ investmentMonthsValue }} meses</span>
+                  </div>
                 </div>
-              </div>
-
-              <!-- Eje X -->
-              <div class="absolute -bottom-5 left-15 right-0 flex justify-around text-xs text-gray-500">
-                <span>Hoy</span>
-                <span>{{ investmentMonthsValue }} meses</span>
               </div>
             </div>
           </div>
