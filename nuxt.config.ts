@@ -48,6 +48,7 @@ export default defineNuxtConfig({
   image: {
     domains: ['ui-avatars.com'],
     format: ['webp', 'avif', 'jpeg'],
+    dir: 'public',
     quality: 80,
     screens: {
       xs: 320,
