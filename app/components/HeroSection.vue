@@ -86,11 +86,11 @@ const dashboardMetrics = [
                         :style="{ color: '#1DA977' }"
                       />
                     </div>
-                    <div class="flex items-end justify-between">
+                    <div class="flex items-center justify-center">
                       <div>
                         <p
-                          class="text-2xl font-bold"
-                          :style="{ color: '#00204B' }"
+                          class="text-2xl font-bold text-center"
+                          :style="{ color: '#00204B'}"
                         >
                           {{ metric.value }}
                         </p>
@@ -123,15 +123,6 @@ const dashboardMetrics = [
                   class="hover:opacity-90 text-white px-8 py-3 justify-center"
                 />
               </a>
-              <!-- <a href="#testimonials">
-                <UButton
-                  label="¿Quiénes somos?"
-                  color="neutral"
-                  variant="outline"
-                  size="lg"
-                  class="border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-3"
-                />
-              </a> -->
             </div>
 
             <!-- Características destacadas -->
