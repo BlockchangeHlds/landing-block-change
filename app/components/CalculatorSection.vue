@@ -98,6 +98,7 @@ const formatCurrency = (value: number) => {
 <template>
   <!-- Calculadora de Ganancias Section -->
   <div
+    id="calculator"
     class="py-16 sm:py-24 rounded-3xl mx-4 sm:mx-8 my-8"
     :style="{
       background: 'linear-gradient(135deg, #00204B 0%, #001a3d 100%)'

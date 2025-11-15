@@ -6,7 +6,7 @@ const testimonials = [
     name: 'Alex Zúñiga',
     position: 'CEO & Co-fundador de BlockChange',
     avatar: 'https://ui-avatars.com/api/?name=Frederic+Hill&size=64&background=1DA977&color=fff',
-    image: 'images/team/alex.png',
+    image: '/images/team/alex.png',
     isCompany: false
   },
   {
@@ -14,7 +14,7 @@ const testimonials = [
     name: 'Lawrence Campos',
     position: 'CIO & Co-fundador de Blockchange',
     avatar: 'https://ui-avatars.com/api/?name=Brendan+Buck&size=64&background=1DA977&color=fff',
-    image: 'images/team/lawrence.png',
+    image: '/images/team/lawrence.png',
     isCompany: false
   },
   {
@@ -22,7 +22,7 @@ const testimonials = [
     name: 'Luis Diego Barandiarán',
     position: 'CFO & Co-fundador de BlockChange',
     avatar: 'https://ui-avatars.com/api/?name=Julie+Kyle&size=64&background=1DA977&color=fff',
-    image: 'images/team/luis.png',
+    image: '/images/team/luis.png',
     isCompany: false
   },
   {
@@ -30,7 +30,7 @@ const testimonials = [
     name: 'Gustavo Wong',
     position: 'CMO & Co-fundador de Blockchange',
     avatar: 'https://ui-avatars.com/api/?name=Brendan+Buck&size=64&background=1DA977&color=fff',
-    image: 'images/team/gustavo.png',
+    image: '/images/team/gustavo.png',
     isCompany: false
   },
   {
@@ -38,7 +38,7 @@ const testimonials = [
     name: 'Bruno Jeri',
     position: 'Legal Counsel de BlockChange',
     avatar: 'https://ui-avatars.com/api/?name=Paige+Lowery&size=64&background=1DA977&color=fff',
-    image: 'images/team/bruno.png',
+    image: '/images/team/bruno.png',
     isCompany: false
   },
   {
@@ -46,7 +46,7 @@ const testimonials = [
     name: 'Maurizio Mendoza',
     position: 'PR & Investor relations de BlockChange',
     avatar: 'https://ui-avatars.com/api/?name=Brendan+Buck&size=64&background=1DA977&color=fff',
-    image: 'images/team/maurizio.png',
+    image: '/images/team/maurizio.png',
     isCompany: false
   }
 ]
@@ -100,22 +100,13 @@ const testimonials = [
                 BlockChange
               </h3>
             </div>
-            <NuxtImg
+            <img
               v-else
               :src="testimonial.image"
               :alt="testimonial.name"
               class="w-full h-full object-cover"
               loading="lazy"
-              format="webp"
-              quality="80"
-              width="600"
-              height="400"
-              fit="cover"
-              position="top"
-              sizes="sm:100vw md:50vw lg:33vw"
-              densities="x1 x2"
-              placeholder
-            />
+            >
           </div>
 
           <!-- Contenido de la tarjeta -->

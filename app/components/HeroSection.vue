@@ -114,13 +114,15 @@ const dashboardMetrics = [
 
             <!-- Botones CTA -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
-              <UButton
-                label="Proyecta tus rendimientos"
-                variant="solid"
-                size="lg"
-                :style="{ backgroundColor: '#1DA977' }"
-                class="hover:opacity-90 text-white px-8 py-3 justify-center"
-              />
+              <a href="#calculator">
+                <UButton
+                  label="Proyecta tus rendimientos"
+                  variant="solid"
+                  size="lg"
+                  :style="{ backgroundColor: '#1DA977' }"
+                  class="hover:opacity-90 text-white px-8 py-3 justify-center"
+                />
+              </a>
               <!-- <a href="#testimonials">
                 <UButton
                   label="¿Quiénes somos?"

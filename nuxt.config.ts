@@ -1,16 +1,18 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  ssr: false,
-  app: {
-    baseURL: '/',
-    buildAssetsDir: '/_nuxt/'
-  },
   modules: [
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/ui',
     '@nuxt/content'
   ],
+
+  ssr: false,
+
+  app: {
+    baseURL: '/',
+    buildAssetsDir: '/_nuxt/'
+  },
 
   devtools: {
     enabled: true
@@ -46,18 +48,8 @@ export default defineNuxtConfig({
   },
 
   image: {
-    domains: ['ui-avatars.com'],
-    format: ['webp', 'avif', 'jpeg'],
-    dir: 'public',
-    quality: 80,
-    screens: {
-      xs: 320,
-      sm: 640,
-      md: 768,
-      lg: 1024,
-      xl: 1280,
-      xxl: 1536
-    }
+    provider: 'none',
+    domains: ['ui-avatars.com']
   },
 
   runtimeConfig: {
