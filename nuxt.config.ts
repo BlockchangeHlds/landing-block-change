@@ -1,5 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  ssr: false,
+  app: {
+    baseURL: '/',
+    buildAssetsDir: '/_nuxt/'
+  },
   modules: [
     '@nuxt/eslint',
     '@nuxt/image',
@@ -22,6 +27,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-01-15',
 
   nitro: {
+    preset: 'static',
     prerender: {
       routes: [
         '/'
