@@ -6,100 +6,74 @@ const consultationForm = reactive({
   phone: '',
   email: '',
   message: '',
-  agreeToPrivacy: false,
-  recaptchaToken: ''
+  agreeToPrivacy: false
 })
 
-// Referencia para el contenedor de reCAPTCHA
-const recaptchaContainer = ref<HTMLDivElement>()
-const recaptchaWidgetId = ref<number | null>(null)
-const isRecaptchaReady = ref(false)
+// Composable de reCAPTCHA v3
+const { executeRecaptcha } = useGoogleRecaptcha()
+const toast = useToast()
+const isSubmitting = ref(false)
 
 // Características del CTA final
-const ctaFeatures = []
-
-// Cargar el script de reCAPTCHA
-onMounted(() => {
-  // Verificar si el script ya está cargado
-  if (window.grecaptcha) {
-    initRecaptcha()
-    return
-  }
-
-  // Cargar el script de reCAPTCHA
-  const script = document.createElement('script')
-  script.src = 'https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit'
-  script.async = true
-  script.defer = true
-
-  // Definir callback global
-  window.onRecaptchaLoad = () => {
-    initRecaptcha()
-  }
-
-  document.head.appendChild(script)
-})
-
-// Inicializar reCAPTCHA
-function initRecaptcha() {
-  if (!recaptchaContainer.value || !window.grecaptcha) return
-
-  const config = useRuntimeConfig()
-  const siteKey = config.public.recaptchaSiteKey || 'TU_SITE_KEY_AQUI'
-
-  try {
-    recaptchaWidgetId.value = window.grecaptcha.render(recaptchaContainer.value, {
-      'sitekey': siteKey,
-      'callback': onRecaptchaSuccess,
-      'expired-callback': onRecaptchaExpired,
-      'error-callback': onRecaptchaError
-    })
-    isRecaptchaReady.value = true
-  } catch (error) {
-    console.error('Error al inicializar reCAPTCHA:', error)
-  }
-}
-
-// Callback cuando reCAPTCHA es exitoso
-function onRecaptchaSuccess(token: string) {
-  consultationForm.recaptchaToken = token
-}
-
-// Callback cuando reCAPTCHA expira
-function onRecaptchaExpired() {
-  consultationForm.recaptchaToken = ''
-}
-
-// Callback cuando hay error en reCAPTCHA
-function onRecaptchaError() {
-  consultationForm.recaptchaToken = ''
-  console.error('Error en reCAPTCHA')
-}
+const ctaFeatures: Array<{ icon: string, text: string }> = []
 
 // Función para enviar el formulario
-function onSubmitConsultation() {
-  // Validar que reCAPTCHA esté completado
-  if (!consultationForm.recaptchaToken) {
-    alert('Por favor, completa el reCAPTCHA')
-    return
-  }
+async function onSubmitConsultation() {
+  try {
+    isSubmitting.value = true
 
-  console.log('Consultation form submitted:', consultationForm)
-  // Aquí iría la lógica para enviar el formulario
+    // Ejecutar reCAPTCHA v3 y obtener el token
+    const token = await executeRecaptcha('submit_consultation')
 
-  // Resetear reCAPTCHA después del envío
-  if (recaptchaWidgetId.value !== null && window.grecaptcha) {
-    window.grecaptcha.reset(recaptchaWidgetId.value)
-    consultationForm.recaptchaToken = ''
+    if (!token) {
+      toast.add({
+        title: 'Error de verificación',
+        description: 'No se pudo completar la verificación de seguridad. Por favor intenta de nuevo.',
+        color: 'error'
+      })
+      return
+    }
+
+    // Preparar datos del formulario con el token de reCAPTCHA
+    const formData = {
+      ...consultationForm,
+      'g-recaptcha-response': token
+    }
+
+    console.log('Formulario enviado:', formData)
+
+    // Aquí iría la lógica para enviar el formulario al backend
+    // Ejemplo:
+    // const response = await $fetch('/api/contact', {
+    //   method: 'POST',
+    //   body: formData
+    // })
+
+    // Mostrar mensaje de éxito
+    toast.add({
+      title: '¡Mensaje enviado!',
+      description: 'Gracias por contactarnos. Te responderemos pronto.',
+      color: 'success'
+    })
+
+    // Limpiar formulario
+    consultationForm.name = ''
+    consultationForm.company = ''
+    consultationForm.phone = ''
+    consultationForm.email = ''
+    consultationForm.message = ''
+    consultationForm.agreeToPrivacy = false
+  } catch (error) {
+    console.error('Error al enviar formulario:', error)
+    toast.add({
+      title: 'Error',
+      description: 'Hubo un problema al enviar el formulario. Por favor intenta de nuevo.',
+      color: 'error'
+    })
+  } finally {
+    isSubmitting.value = false
   }
 }
-
-// Limpiar al desmontar
-onBeforeUnmount(() => {
-  if (window.onRecaptchaLoad) {
-    delete window.onRecaptchaLoad
-  }
-})
 </script>
 
 <template>
@@ -245,9 +219,21 @@ onBeforeUnmount(() => {
                 </label>
               </div>
 
-              <!-- reCAPTCHA v2 -->
-              <div class="flex justify-center py-4">
-                <div ref="recaptchaContainer" />
+              <!-- Nota sobre reCAPTCHA v3 -->
+              <div class="text-xs text-gray-500 text-center py-2">
+                Este sitio está protegido por reCAPTCHA y se aplican la
+                <a
+                  href="https://policies.google.com/privacy"
+                  target="_blank"
+                  class="underline"
+                >Política de Privacidad</a>
+                y los
+                <a
+                  href="https://policies.google.com/terms"
+                  target="_blank"
+                  class="underline"
+                >Términos de Servicio</a>
+                de Google.
               </div>
 
               <!-- Botón de envío -->
@@ -259,7 +245,8 @@ onBeforeUnmount(() => {
                 block
                 :style="{ backgroundColor: '#1DA977' }"
                 class="hover:opacity-90 text-white mt-6"
-                :disabled="!consultationForm.agreeToPrivacy || !consultationForm.recaptchaToken"
+                :disabled="!consultationForm.agreeToPrivacy || isSubmitting"
+                :loading="isSubmitting"
               />
             </UForm>
           </UCard>

@@ -7,7 +7,7 @@ export default defineNuxtConfig({
     '@nuxt/content'
   ],
 
-  ssr: false,
+  ssr: true,
 
   app: {
     baseURL: '/',
