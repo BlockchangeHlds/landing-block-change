@@ -55,11 +55,6 @@ export default defineNuxtConfig({
   runtimeConfig: {
     // Variables privadas (solo servidor)
     resendApiKey: process.env.RESEND_API_KEY || '',
-    contactEmail: process.env.CONTACT_EMAIL || '',
-    recaptchaSecretKey: process.env.RECAPTCHA_SECRET_KEY || '',
-    // Variables públicas (cliente y servidor)
-    public: {
-      recaptchaSiteKey: process.env.NUXT_PUBLIC_RECAPTCHA_SITE_KEY || ''
-    }
+    contactEmail: process.env.CONTACT_EMAIL || ''
   }
 })

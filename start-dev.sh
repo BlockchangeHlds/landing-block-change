@@ -11,18 +11,6 @@ if [ ! -f .env ]; then
 fi
 
 # Verificar que las variables críticas estén configuradas
-if ! grep -q "NUXT_PUBLIC_RECAPTCHA_SITE_KEY=.\+" .env; then
-    echo "⚠️  ADVERTENCIA: NUXT_PUBLIC_RECAPTCHA_SITE_KEY no está configurada"
-    echo "   El formulario de contacto funcionará en modo desarrollo sin protección"
-    echo ""
-fi
-
-if ! grep -q "RECAPTCHA_SECRET_KEY=.\+" .env; then
-    echo "⚠️  ADVERTENCIA: RECAPTCHA_SECRET_KEY no está configurada"
-    echo "   El formulario de contacto funcionará en modo desarrollo sin protección"
-    echo ""
-fi
-
 if ! grep -q "RESEND_API_KEY=.\+" .env; then
     echo "⚠️  ADVERTENCIA: RESEND_API_KEY no está configurada"
     echo "   No se podrán enviar correos electrónicos"
@@ -40,8 +28,6 @@ set +a
 
 # Mostrar configuración (sin mostrar valores sensibles)
 echo "📋 Configuración cargada:"
-echo "   NUXT_PUBLIC_RECAPTCHA_SITE_KEY: ${NUXT_PUBLIC_RECAPTCHA_SITE_KEY:0:20}..."
-echo "   RECAPTCHA_SECRET_KEY: ${RECAPTCHA_SECRET_KEY:0:20}..."
 echo "   RESEND_API_KEY: ${RESEND_API_KEY:0:20}..."
 echo "   CONTACT_EMAIL: $CONTACT_EMAIL"
 echo ""

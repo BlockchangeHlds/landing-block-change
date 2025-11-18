@@ -1,14 +1,4 @@
 <script setup lang="ts">
-// Declaración global de grecaptcha
-declare global {
-  interface Window {
-    grecaptcha: {
-      ready: (callback: () => void) => void
-      execute: (siteKey: string, options: { action: string }) => Promise<string>
-    }
-  }
-}
-
 // Estado del formulario de consulta
 const consultationForm = reactive({
   name: '',
@@ -21,60 +11,14 @@ const consultationForm = reactive({
 
 const toast = useToast()
 const isSubmitting = ref(false)
-const config = useRuntimeConfig()
-const recaptchaSiteKey = config.public.recaptchaSiteKey
 
 // Características del CTA final
 const ctaFeatures: Array<{ icon: string, text: string }> = []
-
-// Cargar el script de reCAPTCHA si está configurado
-onMounted(() => {
-  if (recaptchaSiteKey && typeof window !== 'undefined') {
-    const script = document.createElement('script')
-    script.src = `https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`
-    script.async = true
-    script.defer = true
-    document.head.appendChild(script)
-    console.log('✅ Script de reCAPTCHA cargado')
-  } else {
-    console.warn('⚠️ reCAPTCHA no configurado - funcionando en modo desarrollo')
-  }
-})
-
-// Función para obtener token de reCAPTCHA
-async function getRecaptchaToken(): Promise<string> {
-  if (!recaptchaSiteKey) {
-    console.warn('⚠️ reCAPTCHA no configurado, continuando sin token')
-    return ''
-  }
-
-  return new Promise((resolve) => {
-    if (typeof window !== 'undefined' && window.grecaptcha) {
-      window.grecaptcha.ready(() => {
-        window.grecaptcha.execute(recaptchaSiteKey, { action: 'contact_form' })
-          .then((token) => {
-            console.log('✅ Token de reCAPTCHA obtenido')
-            resolve(token)
-          })
-          .catch((error) => {
-            console.error('❌ Error al obtener token:', error)
-            resolve('')
-          })
-      })
-    } else {
-      console.warn('⚠️ grecaptcha no disponible')
-      resolve('')
-    }
-  })
-}
 
 // Función para enviar el formulario
 async function onSubmitConsultation() {
   try {
     isSubmitting.value = true
-
-    // Obtener token de reCAPTCHA v3
-    const recaptchaToken = await getRecaptchaToken()
 
     // Preparar datos del formulario
     const formData = {
@@ -82,11 +26,8 @@ async function onSubmitConsultation() {
       company: consultationForm.company,
       phone: consultationForm.phone,
       email: consultationForm.email,
-      message: consultationForm.message,
-      recaptchaToken
+      message: consultationForm.message
     }
-
-    console.log('📤 Enviando formulario...')
 
     // Enviar formulario al backend
     const response = await $fetch('/api/contact', {
@@ -94,7 +35,7 @@ async function onSubmitConsultation() {
       body: formData
     })
 
-    console.log('Respuesta del servidor:', response)
+    console.log('✅ Respuesta del servidor:', response)
 
     // Mostrar mensaje de éxito
     toast.add({
@@ -111,7 +52,7 @@ async function onSubmitConsultation() {
     consultationForm.message = ''
     consultationForm.agreeToPrivacy = false
   } catch (error) {
-    console.error('Error al enviar formulario:', error)
+    console.error('❌ Error al enviar formulario:', error)
     toast.add({
       title: 'Error',
       description: 'Hubo un problema al enviar el formulario. Por favor intenta de nuevo.',

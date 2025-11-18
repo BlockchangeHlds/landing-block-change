@@ -1,55 +1,9 @@
 import { Resend } from 'resend'
 
-/**
- * Verifica el token de reCAPTCHA v3 con la API de Google
- */
-async function verifyRecaptcha(token: string, secretKey: string, isDevelopment: boolean): Promise<boolean> {
-  // Claves de prueba de Google - siempre pasan en desarrollo
-  const TEST_SECRET_KEY = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'
-
-  // Si estamos en desarrollo y usando claves de prueba, aceptar automáticamente
-  if (isDevelopment && (secretKey.startsWith('6LeIxAcT') || secretKey === TEST_SECRET_KEY)) {
-    console.log('🧪 [DESARROLLO] Usando claves de prueba de reCAPTCHA - verificación omitida')
-    return true
-  }
-
-  try {
-    const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body: `secret=${secretKey}&response=${token}`
-    })
-
-    const data = await response.json()
-
-    console.log('📊 Respuesta de reCAPTCHA:', {
-      success: data.success,
-      score: data.score,
-      action: data.action,
-      hostname: data.hostname
-    })
-
-    // reCAPTCHA v3 devuelve un score de 0.0 a 1.0
-    // 1.0 es muy probable que sea humano, 0.0 es muy probable que sea bot
-    // Usamos un umbral de 0.5 como recomendación de Google
-    return data.success && data.score >= 0.5
-  } catch (error) {
-    console.error('❌ Error al verificar reCAPTCHA:', error)
-    // En desarrollo, permitir si hay error
-    if (isDevelopment) {
-      console.warn('⚠️ [DESARROLLO] Error en verificación, permitiendo envío')
-      return true
-    }
-    return false
-  }
-}
-
 export default defineEventHandler(async (event) => {
   try {
     const body = await readBody(event)
-    const { name, company, phone, email, message, recaptchaToken } = body
+    const { name, company, phone, email, message } = body
 
     // Validar campos requeridos
     if (!name || !phone || !email) {
@@ -63,39 +17,6 @@ export default defineEventHandler(async (event) => {
     const config = useRuntimeConfig()
     const resendApiKey = config.resendApiKey
     const contactEmail = config.contactEmail
-    const recaptchaSecretKey = config.recaptchaSecretKey
-
-    // Validar token de reCAPTCHA
-    // En desarrollo, permitir envíos sin reCAPTCHA si no está configurado
-    const isDevelopment = process.env.NODE_ENV === 'development'
-
-    if (!recaptchaToken && !isDevelopment) {
-      throw createError({
-        statusCode: 400,
-        statusMessage: 'Token de verificación requerido'
-      })
-    }
-
-    if (!recaptchaSecretKey && !isDevelopment) {
-      throw createError({
-        statusCode: 500,
-        statusMessage: 'Configuración de reCAPTCHA no disponible'
-      })
-    }
-
-    // Verificar el token con Google reCAPTCHA solo si está configurado
-    if (recaptchaToken && recaptchaSecretKey) {
-      const isValidRecaptcha = await verifyRecaptcha(recaptchaToken, recaptchaSecretKey, isDevelopment)
-
-      if (!isValidRecaptcha) {
-        throw createError({
-          statusCode: 403,
-          statusMessage: 'Verificación de reCAPTCHA fallida. Por favor intenta de nuevo.'
-        })
-      }
-    } else if (isDevelopment) {
-      console.warn('⚠️ DESARROLLO: reCAPTCHA no configurado, permitiendo envío sin verificación')
-    }
 
     if (!resendApiKey) {
       throw createError({

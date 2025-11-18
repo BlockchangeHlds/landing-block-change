@@ -15,30 +15,15 @@ Use this template to build your own landing page with [Nuxt UI](https://ui.nuxt.
   </picture>
 </a>
 
-## ⚠️ CONFIGURACIÓN IMPORTANTE - reCAPTCHA
+## Configuración de Variables de Entorno
 
-Para que el formulario de contacto funcione correctamente, **DEBES configurar las claves de reCAPTCHA v3**:
-
-### 1. Obtén tus claves de reCAPTCHA
-1. Ve a https://www.google.com/recaptcha/admin
-2. Crea un nuevo sitio con **reCAPTCHA v3**
-3. Agrega tus dominios: `localhost` (desarrollo) y tu dominio de producción
-4. Copia las claves generadas
-
-### 2. Configura las variables de entorno
 Crea un archivo `.env` en la raíz del proyecto con:
 
 ```bash
-# Google reCAPTCHA v3 (REQUERIDO)
-NUXT_PUBLIC_RECAPTCHA_SITE_KEY=tu_site_key_aqui
-RECAPTCHA_SECRET_KEY=tu_secret_key_aqui
-
 # Resend API para envío de correos
 RESEND_API_KEY=tu_resend_api_key
 CONTACT_EMAIL=tu_email@ejemplo.com
 ```
-
-📖 **Lee `RECAPTCHA_SETUP.md` para instrucciones detalladas**
 
 ## Quick Start
 
