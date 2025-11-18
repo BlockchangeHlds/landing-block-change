@@ -22,17 +22,20 @@ async function onSubmitConsultation() {
 
     // Preparar datos del formulario
     const formData = {
-      ...consultationForm
+      name: consultationForm.name,
+      company: consultationForm.company,
+      phone: consultationForm.phone,
+      email: consultationForm.email,
+      message: consultationForm.message
     }
 
-    console.log('Formulario enviado:', formData)
+    // Enviar formulario al backend
+    const response = await $fetch('/api/contact', {
+      method: 'POST',
+      body: formData
+    })
 
-    // Aquí iría la lógica para enviar el formulario al backend
-    // Ejemplo:
-    // const response = await $fetch('/api/contact', {
-    //   method: 'POST',
-    //   body: formData
-    // })
+    console.log('Respuesta del servidor:', response)
 
     // Mostrar mensaje de éxito
     toast.add({
@@ -128,7 +131,7 @@ async function onSubmitConsultation() {
                 >
                   <UInput
                     v-model="consultationForm.name"
-                    :ui="{ base: 'bg-white', root: 'w-full' }"
+                    :ui="{ base: 'bg-white text-black', root: 'w-full' }"
                     placeholder="Ingresa tu nombre"
                     required
                   />
@@ -141,7 +144,7 @@ async function onSubmitConsultation() {
                 >
                   <UInput
                     v-model="consultationForm.company"
-                    :ui="{ base: 'bg-white', root: 'w-full' }"
+                    :ui="{ base: 'bg-white text-black', root: 'w-full' }"
                     placeholder="Ingresa tus apellidos"
                   />
                 </UFormField>
@@ -156,7 +159,7 @@ async function onSubmitConsultation() {
                 >
                   <UInput
                     v-model="consultationForm.phone"
-                    :ui="{ base: 'bg-white', root: 'w-full' }"
+                    :ui="{ base: 'bg-white text-black', root: 'w-full' }"
                     placeholder="Ingresa tu teléfono"
                     type="tel"
                     required
@@ -170,7 +173,7 @@ async function onSubmitConsultation() {
                 >
                   <UInput
                     v-model="consultationForm.email"
-                    :ui="{ base: 'bg-white', root: 'w-full' }"
+                    :ui="{ base: 'bg-white text-black', root: 'w-full' }"
                     placeholder="Ingresa tu correo"
                     type="email"
                     required
@@ -186,7 +189,7 @@ async function onSubmitConsultation() {
               >
                 <UTextarea
                   v-model="consultationForm.message"
-                  :ui="{ base: 'bg-white', root: 'w-full' }"
+                  :ui="{ base: 'bg-white text-black', root: 'w-full' }"
                   placeholder="Cuéntanos cómo podemos ayudarte..."
                   :rows="5"
                 />
