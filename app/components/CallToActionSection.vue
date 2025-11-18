@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import useGoogleRecaptcha from '../../composables/useGoogleRecaptcha'
+
 // Estado del formulario de consulta
 const consultationForm = reactive({
   name: '',

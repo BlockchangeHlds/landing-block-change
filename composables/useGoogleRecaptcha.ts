@@ -10,7 +10,7 @@ import { useReCaptcha } from 'vue-recaptcha-v3'
  * const { executeRecaptcha } = useGoogleRecaptcha()
  * const token = await executeRecaptcha('submit_form')
  */
-export const useGoogleRecaptcha = () => {
+export default function useGoogleRecaptcha() {
   const recaptchaInstance = useReCaptcha()
 
   /**
