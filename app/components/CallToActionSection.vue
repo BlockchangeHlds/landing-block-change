@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import useGoogleRecaptcha from '../../composables/useGoogleRecaptcha'
-
 // Estado del formulario de consulta
 const consultationForm = reactive({
   name: '',
@@ -11,8 +9,6 @@ const consultationForm = reactive({
   agreeToPrivacy: false
 })
 
-// Composable de reCAPTCHA v3
-const { executeRecaptcha } = useGoogleRecaptcha()
 const toast = useToast()
 const isSubmitting = ref(false)
 
@@ -24,22 +20,9 @@ async function onSubmitConsultation() {
   try {
     isSubmitting.value = true
 
-    // Ejecutar reCAPTCHA v3 y obtener el token
-    const token = await executeRecaptcha('submit_consultation')
-
-    if (!token) {
-      toast.add({
-        title: 'Error de verificación',
-        description: 'No se pudo completar la verificación de seguridad. Por favor intenta de nuevo.',
-        color: 'error'
-      })
-      return
-    }
-
-    // Preparar datos del formulario con el token de reCAPTCHA
+    // Preparar datos del formulario
     const formData = {
-      ...consultationForm,
-      'g-recaptcha-response': token
+      ...consultationForm
     }
 
     console.log('Formulario enviado:', formData)
@@ -219,23 +202,6 @@ async function onSubmitConsultation() {
                   <b>Acepto los términos y condiciones. </b>
                   Solo usaremos tus datos para contactarte
                 </label>
-              </div>
-
-              <!-- Nota sobre reCAPTCHA v3 -->
-              <div class="text-xs text-gray-500 text-center py-2">
-                Este sitio está protegido por reCAPTCHA y se aplican la
-                <a
-                  href="https://policies.google.com/privacy"
-                  target="_blank"
-                  class="underline"
-                >Política de Privacidad</a>
-                y los
-                <a
-                  href="https://policies.google.com/terms"
-                  target="_blank"
-                  class="underline"
-                >Términos de Servicio</a>
-                de Google.
               </div>
 
               <!-- Botón de envío -->

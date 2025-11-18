@@ -25,12 +25,16 @@ useSeoMeta({
 
 <template>
   <UApp :toaster="{ expand: false }">
-    <AppHeader />
+    <ClientOnly>
+      <AppHeader />
+    </ClientOnly>
 
     <UMain>
       <NuxtPage />
     </UMain>
 
-    <AppFooter />
+    <ClientOnly>
+      <AppFooter />
+    </ClientOnly>
   </UApp>
 </template>
