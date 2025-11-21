@@ -9,10 +9,10 @@ useHead({
     { key: 'theme-color', name: 'theme-color', content: color }
   ],
   link: [
-    { rel: 'icon', href: '/favicon.ico' }
+    { rel: 'icon', type: 'image/png', href: '/logos/logo.png' }
   ],
   htmlAttrs: {
-    lang: 'en'
+    lang: 'es'
   }
 })
 
