@@ -4,18 +4,18 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/image',
     '@nuxt/ui',
-    '@nuxt/content'
+    '@nuxt/content',
+    '@nuxtjs/turnstile'
   ],
 
+  turnstile: {
+    siteKey: process.env.NUXT_PUBLIC_TURNSTILE_SITE_KEY || ''
+  },
   ssr: true,
 
   app: {
     baseURL: '/',
     buildAssetsDir: '/_nuxt/'
-  },
-
-  devtools: {
-    enabled: true
   },
 
   css: ['~/assets/css/main.css'],
@@ -24,6 +24,13 @@ export default defineNuxtConfig({
     highlight: {
       noApiRoute: false
     }
+  },
+
+  runtimeConfig: {
+    // Variables privadas (solo servidor)
+    resendApiKey: process.env.RESEND_API_KEY || '',
+    contactEmail: process.env.CONTACT_EMAIL || '',
+    turnstileSecretKey: process.env.TURNSTILE_SECRET_KEY || ''
   },
 
   compatibilityDate: '2025-01-15',
@@ -51,10 +58,4 @@ export default defineNuxtConfig({
     provider: 'none',
     domains: ['ui-avatars.com']
   },
-
-  runtimeConfig: {
-    // Variables privadas (solo servidor)
-    resendApiKey: process.env.RESEND_API_KEY || '',
-    contactEmail: process.env.CONTACT_EMAIL || ''
-  }
 })

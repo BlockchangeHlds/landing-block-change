@@ -13,6 +13,7 @@ const consultationForm = reactive({
 
 const toast = useToast()
 const isSubmitting = ref(false)
+const turnstileToken = ref('')
 
 // Características del CTA final
 const ctaFeatures: Array<{ icon: string, text: string }> = []
@@ -101,13 +102,19 @@ async function onSubmitConsultation(_event: FormSubmitEvent<typeof consultationF
   try {
     isSubmitting.value = true
 
-    // Preparar datos del formulario
+    // Validar que Turnstile haya generado un token
+    if (!turnstileToken.value) {
+      throw new Error('Por favor, completa la verificación de seguridad')
+    }
+
+    // Preparar datos del formulario con token de Turnstile
     const formData = {
       name: consultationForm.name,
       company: consultationForm.company,
       phone: consultationForm.phone,
       email: consultationForm.email,
-      message: consultationForm.message
+      message: consultationForm.message,
+      turnstileToken: turnstileToken.value
     }
 
     // Enviar formulario al backend
@@ -132,6 +139,7 @@ async function onSubmitConsultation(_event: FormSubmitEvent<typeof consultationF
     consultationForm.email = ''
     consultationForm.message = ''
     consultationForm.agreeToPrivacy = false
+    turnstileToken.value = ''
   } catch (error) {
     console.error('❌ Error al enviar formulario:', error)
     toast.add({
@@ -294,6 +302,13 @@ async function onSubmitConsultation(_event: FormSubmitEvent<typeof consultationF
                   </label>
                 </div>
               </UFormField>
+
+              <!-- Cloudflare Turnstile -->
+              <div class="flex justify-center">
+                <NuxtTurnstile
+                  v-model="turnstileToken"
+                />
+              </div>
 
               <!-- Botón de envío -->
               <UButton

@@ -3,7 +3,7 @@ import { Resend } from 'resend'
 export default defineEventHandler(async (event) => {
   try {
     const body = await readBody(event)
-    const { name, company, phone, email, message } = body
+    const { name, company, phone, email, message, turnstileToken } = body
 
     // Validar campos requeridos
     if (!name || !phone || !email) {
@@ -13,10 +13,19 @@ export default defineEventHandler(async (event) => {
       })
     }
 
+    // Validar token de Turnstile
+    if (!turnstileToken) {
+      throw createError({
+        statusCode: 400,
+        statusMessage: 'Token de verificación no proporcionado'
+      })
+    }
+
     // Obtener la configuración desde las variables de entorno
     const config = useRuntimeConfig()
     const resendApiKey = config.resendApiKey
     const contactEmail = config.contactEmail
+    const turnstileSecretKey = config.turnstileSecretKey
 
     if (!resendApiKey) {
       throw createError({
@@ -31,6 +40,38 @@ export default defineEventHandler(async (event) => {
         statusMessage: 'Correo de destino no configurado'
       })
     }
+
+    if (!turnstileSecretKey) {
+      throw createError({
+        statusCode: 500,
+        statusMessage: 'Configuración de Turnstile no disponible'
+      })
+    }
+
+    // Verificar el token de Turnstile con Cloudflare
+    const turnstileResponse = await $fetch<{
+      success: boolean
+      'error-codes'?: string[]
+      challenge_ts?: string
+      hostname?: string
+    }>('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      body: {
+        secret: turnstileSecretKey,
+        response: turnstileToken
+      }
+    })
+
+    // Validar respuesta de Turnstile
+    if (!turnstileResponse.success) {
+      console.error('Error de Turnstile:', turnstileResponse['error-codes'])
+      throw createError({
+        statusCode: 400,
+        statusMessage: 'Verificación de seguridad fallida'
+      })
+    }
+
+    console.log('✅ Turnstile verificado exitosamente')
 
     // Inicializar Resend
     const resend = new Resend(resendApiKey)
