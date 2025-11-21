@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { FormError, FormSubmitEvent } from '#ui/types'
+
 // Estado del formulario de consulta
 const consultationForm = reactive({
   name: '',
@@ -15,8 +17,87 @@ const isSubmitting = ref(false)
 // Características del CTA final
 const ctaFeatures: Array<{ icon: string, text: string }> = []
 
+// Función de validación del formulario
+function validateForm(state: typeof consultationForm): FormError[] {
+  const errors: FormError[] = []
+
+  // Validar nombre (requerido)
+  if (!state.name || state.name.trim() === '') {
+    errors.push({
+      name: 'name',
+      message: 'El nombre es requerido'
+    })
+  }
+
+  // Validar apellido (requerido)
+  if (!state.company || state.company.trim() === '') {
+    errors.push({
+      name: 'company',
+      message: 'El apellido es requerido'
+    })
+  }
+
+  // Validar teléfono (requerido, solo números y 9 dígitos)
+  if (!state.phone || state.phone.trim() === '') {
+    errors.push({
+      name: 'phone',
+      message: 'El teléfono es requerido'
+    })
+  } else {
+    // Validar que solo contenga números
+    const phoneRegex = /^\d+$/
+    if (!phoneRegex.test(state.phone)) {
+      errors.push({
+        name: 'phone',
+        message: 'El teléfono debe contener solo números'
+      })
+    } else if (state.phone.length !== 9) {
+      // Validar que tenga exactamente 9 dígitos
+      errors.push({
+        name: 'phone',
+        message: 'El teléfono debe tener exactamente 9 dígitos'
+      })
+    }
+  }
+
+  // Validar email (requerido y formato)
+  if (!state.email || state.email.trim() === '') {
+    errors.push({
+      name: 'email',
+      message: 'El correo electrónico es requerido'
+    })
+  } else {
+    // Validar formato de email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(state.email)) {
+      errors.push({
+        name: 'email',
+        message: 'El formato del correo electrónico no es válido'
+      })
+    }
+  }
+
+  // Validar mensaje (requerido)
+  if (!state.message || state.message.trim() === '') {
+    errors.push({
+      name: 'message',
+      message: 'El mensaje es requerido'
+    })
+  }
+
+  // Validar aceptación de términos
+  if (!state.agreeToPrivacy) {
+    errors.push({
+      name: 'agreeToPrivacy',
+      message: 'Debes aceptar los términos y condiciones'
+    })
+  }
+
+  return errors
+}
+
 // Función para enviar el formulario
-async function onSubmitConsultation() {
+async function onSubmitConsultation(_event: FormSubmitEvent<typeof consultationForm>) {
   try {
     isSubmitting.value = true
 
@@ -119,6 +200,7 @@ async function onSubmitConsultation() {
             <!-- Formulario -->
             <UForm
               :state="consultationForm"
+              :validate="validateForm"
               class="space-y-4"
               @submit="onSubmitConsultation"
             >
@@ -138,7 +220,7 @@ async function onSubmitConsultation() {
                 </UFormField>
 
                 <UFormField
-                  label="Apellidos"
+                  label="Apellidos *"
                   name="company"
                   :ui="{ label: 'block font-medium text-gray-900' }"
                 >
@@ -146,6 +228,7 @@ async function onSubmitConsultation() {
                     v-model="consultationForm.company"
                     :ui="{ base: 'bg-white text-black', root: 'w-full' }"
                     placeholder="Ingresa tus apellidos"
+                    required
                   />
                 </UFormField>
               </div>
@@ -183,7 +266,7 @@ async function onSubmitConsultation() {
 
               <!-- Área de texto -->
               <UFormField
-                label="Cuéntanos un poco sobre ti"
+                label="Cuéntanos un poco sobre ti *"
                 name="message"
                 :ui="{ label: 'block font-medium text-gray-900' }"
               >
@@ -192,20 +275,25 @@ async function onSubmitConsultation() {
                   :ui="{ base: 'bg-white text-black', root: 'w-full' }"
                   placeholder="Cuéntanos cómo podemos ayudarte..."
                   :rows="5"
+                  required
                 />
               </UFormField>
 
               <!-- Checkbox de privacidad -->
-              <div class="flex items-start gap-3">
-                <UCheckbox
-                  v-model="consultationForm.agreeToPrivacy"
-                  required
-                />
-                <label class="text-sm text-gray-600 leading-relaxed">
-                  <b>Acepto los términos y condiciones. </b>
-                  Solo usaremos tus datos para contactarte
-                </label>
-              </div>
+              <UFormField
+                name="agreeToPrivacy"
+              >
+                <div class="flex items-start gap-3">
+                  <UCheckbox
+                    v-model="consultationForm.agreeToPrivacy"
+                    required
+                  />
+                  <label class="text-sm text-gray-600 leading-relaxed">
+                    <b>Acepto los términos y condiciones. </b>
+                    Solo usaremos tus datos para contactarte
+                  </label>
+                </div>
+              </UFormField>
 
               <!-- Botón de envío -->
               <UButton
@@ -216,7 +304,6 @@ async function onSubmitConsultation() {
                 block
                 :style="{ backgroundColor: '#1DA977' }"
                 class="hover:opacity-90 text-white mt-6"
-                :disabled="!consultationForm.agreeToPrivacy || isSubmitting"
                 :loading="isSubmitting"
               />
             </UForm>
