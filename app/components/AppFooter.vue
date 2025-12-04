@@ -120,6 +120,16 @@ function onSubmit() {
       >
         Libro de Reclamaciones
       </UButton>
+      <UButton
+        to="https://docs.google.com/document/d/1-kxevaevUwc4pbM2-EQpBxKDPL2iVkH1r8nq12cllyE/edit?tab=t.0"
+        target="_blank"
+        icon="i-heroicons-book-open"
+        aria-label="Libro de Reclamaciones"
+        color="neutral"
+        variant="ghost"
+      >
+        F.A.Qs
+      </UButton>
     </template>
   </UFooter>
 </template>
