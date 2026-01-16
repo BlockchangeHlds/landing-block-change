@@ -41,12 +41,20 @@ const testimonials = [
     image: '/images/team/bruno.png',
     isCompany: false
   },
-  {
+  /*{
     quote: 'Magíster en Relaciones Públicas y Publicidad Estratégica por la Universidad Autónoma de Barcelona y Bachiller en Marketing por la Universidad de Lima. Con más de una década de experiencia, ha liderado estrategias de comunicación y marketing en sectores financieros, educativos y hoteleros. En BlockChange, gestiona las relaciones públicas e inversionistas, fortaleciendo la reputación del fondo y su conexión con la comunidad financiera internacional.',
     name: 'Maurizio Mendoza',
     position: 'PR & Investor relations de BlockChange',
     avatar: 'https://ui-avatars.com/api/?name=Brendan+Buck&size=64&background=1DA977&color=fff',
     image: '/images/team/maurizio.png',
+    isCompany: false
+  },*/
+  {
+    quote: 'Estrategas con experiencia en inversiones digitales, finanzas corporativas y marketing, unidos por una visión común: impulsar el futuro financiero descentralizado a través de la innovación, la tecnología y la comunicación estratégica..',
+    name: 'Team BlockChange',
+    position: '',
+    avatar: 'https://ui-avatars.com/api/?name=Brendan+Buck&size=64&background=1DA977&color=fff',
+    image: 'logos/block-change-logo2.png',
     isCompany: false
   }
 ]
