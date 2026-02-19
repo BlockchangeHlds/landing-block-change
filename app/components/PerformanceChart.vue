@@ -1,22 +1,22 @@
 <script setup lang="ts">
 // Datos de resultados mensuales 2024
 const monthlyData = [
-  { month: 'Ene', value: 0.98 },
-  { month: 'Feb', value: 2.23 },
-  { month: 'Mar', value: 2.06 },
-  { month: 'Abr', value: 2.71 },
-  { month: 'May', value: 1.46 },
-  { month: 'Jun', value: 1.73 },
-  { month: 'Jul', value: 1.88 },
-  { month: 'Ago', value: 1.29 },
-  { month: 'Set', value: 1.50 },
-  { month: 'Oct', value: 3.13 },
-  { month: 'Nov', value: 3.85 },
-  { month: 'Dic', value: 2.54 }
+  { month: 'Ene', value: 2.06 },
+  { month: 'Feb', value: 0.68 },
+  { month: 'Mar', value: 1.75 },
+  { month: 'Abr', value: 1.88 },
+  { month: 'May', value: 1.67 },
+  { month: 'Jun', value: 1.72 },
+  { month: 'Jul', value: 2.08 },
+  { month: 'Ago', value: 1.41 },
+  { month: 'Set', value: 0.52 },
+  { month: 'Oct', value: 2.22 },
+  { month: 'Nov', value: 1.43 },
+  { month: 'Dic', value: 1.29 }
 ]
 
 // Configuración del gráfico
-const maxValue = 4
+const maxValue = 2.5
 const chartHeight = 300
 const barWidth = 60
 const gap = 20
@@ -72,12 +72,12 @@ const formatPercentage = (value: number) => {
         <!-- Líneas de referencia -->
         <g :transform="`translate(0, ${topPadding})`">
           <line
-            v-for="i in 5"
+            v-for="i in 6"
             :key="`line-${i}`"
             :x1="leftPadding"
-            :y1="(chartHeight / 4) * (i - 1)"
+            :y1="(chartHeight / 5) * (i - 1)"
             :x2="950"
-            :y2="(chartHeight / 4) * (i - 1)"
+            :y2="(chartHeight / 5) * (i - 1)"
             stroke="#E5E7EB"
             stroke-width="1"
           />
@@ -86,14 +86,14 @@ const formatPercentage = (value: number) => {
         <!-- Etiquetas del eje Y -->
         <g :transform="`translate(0, ${topPadding})`">
           <text
-            v-for="(label, i) in [4, 3, 2, 1, 0]"
+            v-for="(label, i) in ['2.5%', '2.0%', '1.5%', '1.0%', '0.5%', '0.0%']"
             :key="`label-y-${i}`"
             :x="leftPadding - 10"
-            :y="(chartHeight / 4) * i + 5"
+            :y="(chartHeight / 5) * i + 5"
             text-anchor="end"
             class="text-xs fill-gray-500"
           >
-            {{ label }}%
+            {{ label }}
           </text>
         </g>
 
@@ -143,7 +143,8 @@ const formatPercentage = (value: number) => {
     <!-- Nota al pie -->
     <div class="mt-8 pt-6 border-t border-gray-200">
       <p class="text-sm text-gray-600 mb-3">
-        El drawdown* máximo en 2024 fue del 4,81%, lo que representa una reducción del 67,36% en comparación con el drawdown máximo registrado en 2023.
+        En el 2025 tuvimos un drawdown del 3.19%. Drawdown: En el contexto financiero, el término drawdown se
+        refiere a la máxima caída que experimenta el fondo desde su punto más alto hasta su punto más bajo.
       </p>
       <p class="text-xs text-gray-500 italic">
         *Drawdown: En el contexto financiero, el término drawdown se refiere a la máxima caída que experimenta el fondo desde su punto más alto hasta su punto más bajo.

@@ -36,7 +36,7 @@ const dashboardMetrics = [
     trend: 'up'
   },
   {
-    title: 'Rendimientos hasta',
+    title: 'Rendimientos promedio',
     value: '24% Anual*',
     change: '*Es una proyección en base al comportamiento del mercado. No podemos garantizar la cifra.',
     trend: 'up'
