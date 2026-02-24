@@ -60,13 +60,13 @@ const investmentMonthsValue = computed(() => monthOptions[selectedMonthIndex.val
 const annualReturn = computed(() => {
   const months = investmentMonthsValue.value
   if (months <= 6) {
-    return 12.31
+    return 1
   } else if (months <= 12) {
-    return 24.64
+    return 22
   } else if (months <= 24) {
-    return 41.44
+    return 44
   } else {
-    return 59.11
+    return 66
   }
 })
 

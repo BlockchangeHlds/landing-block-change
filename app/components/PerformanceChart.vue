@@ -43,7 +43,7 @@ const formatPercentage = (value: number) => {
       class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4"
       :style="{ color: '#00204B' }"
     >
-      Resultados del año 2024
+      Resultados del año 2025
     </h3>
 
     <p class="text-gray-600 mb-8 text-sm sm:text-base">
