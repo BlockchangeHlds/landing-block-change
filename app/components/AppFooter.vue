@@ -121,14 +121,34 @@ function onSubmit() {
         Libro de Reclamaciones
       </UButton>
       <UButton
-        to="https://docs.google.com/document/d/1-kxevaevUwc4pbM2-EQpBxKDPL2iVkH1r8nq12cllyE/edit?tab=t.0"
+        to="/docs/faqs.pdf"
         target="_blank"
         icon="i-heroicons-book-open"
-        aria-label="Libro de Reclamaciones"
+        aria-label="F.A.Qs"
         color="neutral"
         variant="ghost"
       >
         F.A.Qs
+      </UButton>
+      <UButton
+        to="/docs/tc.pdf"
+        target="_blank"
+        icon="i-heroicons-book-open"
+        aria-label="Términos y Condiciones"
+        color="neutral"
+        variant="ghost"
+      >
+        Términos y Condiciones
+      </UButton>
+      <UButton
+        to="/docs/politica-privacidad.pdf"
+        target="_blank"
+        icon="i-heroicons-book-open"
+        aria-label="Política de Privacidad"
+        color="neutral"
+        variant="ghost"
+      >
+        Política de Privacidad
       </UButton>
     </template>
   </UFooter>
