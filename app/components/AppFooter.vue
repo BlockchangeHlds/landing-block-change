@@ -55,7 +55,11 @@ function onSubmit() {
     class="h-px"
   /> -->
 
-  <UFooter :ui="{ top: 'border-b border-default' }">
+  <UFooter :ui="{
+    top: 'border-b border-default',
+    left: 'lg:flex-none lg:shrink-0',
+    right: 'flex flex-wrap items-center justify-center gap-1.5 sm:justify-end lg:flex-auto'
+  }">
     <!-- <template #top>
       <UContainer>
         <UFooterColumns :columns="columns">
@@ -117,36 +121,41 @@ function onSubmit() {
         aria-label="Libro de Reclamaciones"
         color="neutral"
         variant="ghost"
+        class="shrink-0 whitespace-nowrap"
+        :ui="{ label: 'whitespace-nowrap' }"
       >
         Libro de Reclamaciones
       </UButton>
       <UButton
         to="/docs/faqs.pdf"
         target="_blank"
-        icon="i-heroicons-book-open"
         aria-label="F.A.Qs"
         color="neutral"
         variant="ghost"
+        class="shrink-0 whitespace-nowrap"
+        :ui="{ label: 'whitespace-nowrap' }"
       >
         F.A.Qs
       </UButton>
       <UButton
         to="/docs/tc.pdf"
         target="_blank"
-        icon="i-heroicons-book-open"
         aria-label="Términos y Condiciones"
         color="neutral"
         variant="ghost"
+        class="shrink-0 whitespace-nowrap"
+        :ui="{ label: 'whitespace-nowrap' }"
       >
         Términos y Condiciones
       </UButton>
       <UButton
         to="/docs/politica-privacidad.pdf"
         target="_blank"
-        icon="i-heroicons-book-open"
         aria-label="Política de Privacidad"
         color="neutral"
         variant="ghost"
+        class="shrink-0 whitespace-nowrap"
+        :ui="{ label: 'whitespace-nowrap' }"
       >
         Política de Privacidad
       </UButton>
